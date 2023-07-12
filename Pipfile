@@ -1,0 +1,36 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+# we don't specify dependencies for the library here for intallation as per: https://pipenv-fork.readthedocs.io/en/latest/advanced.html#pipfile-vs-setuppy
+# aea/autonomy package dependencies are specified in their respective configuration yaml files and as dev dependencies below
+
+[dev-packages]
+### package deps
+aiohttp = "==3.7.4.post0"
+asn1crypto = "==1.4.0"
+# we pin this as the range specified in open-aea-ledger-cosmos is wide
+cosmpy = "==0.3.1"
+grpcio = "==1.43.0"
+hypothesis = "==6.21.6"
+open-aea = {version = "==1.35.0", extras = ["all"]}
+open-aea-ledger-ethereum = "==1.35.0"
+open-aea-ledger-ethereum-hwi = "==1.35.0"
+open-aea-cli-ipfs = "==1.35.0"
+ipfshttpclient = "==0.8.0a2"
+open-aea-test-autonomy = "==0.10.7"
+open-autonomy = {version = "==0.10.7", extras = [ "all"]}
+pytz = "==2022.2.1"
+py-ecc = "==5.2.0"
+py-eth-sig-utils = "==0.4.0"
+### tests deps
+mistune = "==2.0.3"
+tomte = {version = "==0.2.2", extras = ["tox", "tests"]}
+# for http server connection
+openapi-core = "==0.13.2"
+openapi-spec-validator = "==0.2.8"
+
+[requires]
+python_version = "3.10"
