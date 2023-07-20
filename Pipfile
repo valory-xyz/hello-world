@@ -9,7 +9,7 @@ name = "pypi"
 
 [dev-packages]
 ### package deps
-aiohttp = "==3.7.4.post0"
+aiohttp = "==3.8.5"
 asn1crypto = "==1.4.0"
 # we pin this as the range specified in open-aea-ledger-cosmos is wide
 cosmpy = "==0.3.1"
