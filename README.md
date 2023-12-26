@@ -10,6 +10,10 @@ Example of an autonomous service using the [Open Autonomy](https://docs.autonola
 - [Docker Engine](https://docs.docker.com/engine/install/)
 - [Docker Compose](https://docs.docker.com/compose/install/)
 - The [Open Autonomy](https://docs.autonolas.network/open-autonomy/guides/set_up/#set-up-the-framework) framework
+- The [Open Autonomy Cryptography Plugin](https://pypi.org/project/open-aea-ledger-ethereum) for ethereum.
+    
+          pip install open-aea-ledger-ethereum
+
 
 ## Prepare the environment
 
