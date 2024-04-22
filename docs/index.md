@@ -1,4 +1,4 @@
-The Hello World service provides an overview of the main components of an [agent service](https://docs.autonolas.network/open-autonomy/get_started/what_is_an_agent_service.md) and how they work together. The goal of this service is to help new users of Open Autonomy understand how the components of of a service work. While the service itself is very simple, it demonstrates common features found in many agent services and can be used as a starting point for building your own service with more complex functionalities.
+The Hello World service provides an overview of the main components of an [agent service](https://docs.autonolas.network/open-autonomy/get_started/what_is_an_agent_service) and how they work together. The goal of this service is to help new users of Open Autonomy understand how the components of of a service work. While the service itself is very simple, it demonstrates common features found in many agent services and can be used as a starting point for building your own service with more complex functionalities.
 
 ## Architecture of the demo
 
@@ -17,9 +17,9 @@ of the demo.
 
 ## Running the demo
 
-You can find the instructions on how to run the Hello World service in the [quick start](https://docs.autonolas.network/open-autonomy/guides/quick_start.md) guide.
+You can find the instructions on how to run the Hello World service in the [quick start](https://docs.autonolas.network/open-autonomy/guides/quick_start) guide.
 
-If you have [set up the framework](https://docs.autonolas.network/open-autonomy/guides/set_up.md#set-up-the-framework), you can fetch the source code of the Hello World agent:
+If you have [set up the framework](https://docs.autonolas.network/open-autonomy/guides/set_up/#set-up-the-framework), you can fetch the source code of the Hello World agent:
 
 ```bash
 autonomy fetch valory/hello_world:0.1.0:<hash> --alias hello_world_agent
@@ -70,7 +70,7 @@ The main questions that we try to answer in the sections below are:
 
 ### The FSM of the service
 
-As discussed in the [overview of the development process](https://docs.autonolas.network/open-autonomy/guides/overview_of_the_development_process.md), the first steps when designing an agent service are [draft the service idea and define the FSM specification](#) that represents its business logic. This is a representation of the Hello World service FSM:
+As discussed in the [overview of the development process](https://docs.autonolas.network/open-autonomy/guides/overview_of_the_development_process), the first steps when designing an agent service are [draft the service idea and define the FSM specification](#) that represents its business logic. This is a representation of the Hello World service FSM:
 
 <figure markdown>
 ![](./images/hello_world_fsm.svg)
@@ -148,14 +148,14 @@ The {{fsm_app}} is a complex component that consists of a number of classes. Bel
 
 For each state of the service FSM:
 
-* A [`Behaviour`](https://docs.autonolas.network/open-autonomy/key_concepts/abci_app_async_behaviour.md): The class that executes the proactive action at each state. For example, cast a vote for a keeper, print a message on screen, send a transaction on a blockchain, etc.
-* A [`Payload`](https://docs.autonolas.network/open-autonomy/key_concepts/abci_app_async_behaviour.md): The message exchanged between agents in the state to indicate completion of the action. For example, a message containing what keeper the agent is voting for.
-* A [`Round`](https://docs.autonolas.network/open-autonomy/key_concepts/abci_app_abstract_round.md): The class that processes the input from the consensus gadget and outputs the appropriate events to make the next transition. For example, output the event DONE when all agents have cast they vote for a keeper.
+* A [`Behaviour`](https://docs.autonolas.network/open-autonomy/key_concepts/abci_app_async_behaviour): The class that executes the proactive action at each state. For example, cast a vote for a keeper, print a message on screen, send a transaction on a blockchain, etc.
+* A [`Payload`](https://docs.autonolas.network/open-autonomy/key_concepts/abci_app_async_behaviour): The message exchanged between agents in the state to indicate completion of the action. For example, a message containing what keeper the agent is voting for.
+* A [`Round`](https://docs.autonolas.network/open-autonomy/key_concepts/abci_app_abstract_round): The class that processes the input from the consensus gadget and outputs the appropriate events to make the next transition. For example, output the event DONE when all agents have cast they vote for a keeper.
 
 Additionally, the following two classes:
 
-* [`AbciApp`](https://docs.autonolas.network/open-autonomy/key_concepts/abci_app_class.md): The class that defines the FSM itself and the transitions between states according to the FSM.
-* [`RoundBehaviour`](https://docs.autonolas.network/open-autonomy/key_concepts/abci_app_abstract_round_behaviour.md): The main class of the {{fsm_app}} skill, which aggregates the `AbciApp` and establishes a one-to-one relationship between the rounds and behaviours of each state.
+* [`AbciApp`](https://docs.autonolas.network/open-autonomy/key_concepts/abci_app_class): The class that defines the FSM itself and the transitions between states according to the FSM.
+* [`RoundBehaviour`](https://docs.autonolas.network/open-autonomy/key_concepts/abci_app_abstract_round_behaviour): The main class of the {{fsm_app}} skill, which aggregates the `AbciApp` and establishes a one-to-one relationship between the rounds and behaviours of each state.
 
 In summary, the Hello World service {{fsm_app}} requires 5 `Behaviours`, 5 `Payloads`, 5 `Rounds`, 1 `AbciApp` and 1 `RoundBehaviour`.
 
@@ -233,7 +233,7 @@ As a summary, find below an image which shows the main components of the agent a
 
 ### Coding the Hello World service: a primer
 
-As detailed in the [overview of the development process](https://docs.autonolas.network/open-autonomy/guides/overview_of_the_development_process.md), in order to create a service, you must:
+As detailed in the [overview of the development process](https://docs.autonolas.network/open-autonomy/guides/overview_of_the_development_process), in order to create a service, you must:
 
 * code the {{fsm_app}} skill,
 * define the agent, and
@@ -261,7 +261,7 @@ Take a look at the structure of the {{fsm_app}} skill of the Hello World service
 └── tests/
 ```
 
-Note that the easiest way to start building a new {{fsm_app}} is by [using the {{fsm_app}} scaffold tool](https://docs.autonolas.network/open-autonomy/guides/code_fsm_app_skill.md), because it already populates many of these files. The most important files you should look at are:
+Note that the easiest way to start building a new {{fsm_app}} is by [using the {{fsm_app}} scaffold tool](https://docs.autonolas.network/open-autonomy/guides/code_fsm_app_skill), because it already populates many of these files. The most important files you should look at are:
 
 * **`behaviours.py`**: This file defines the `Behaviours`, which encode the proactive actions occurring at each state of the FSM. Each behaviour is one-to-one associated to a `Round`. It also contains the `HelloWorldRoundBehaviour` class, which can be thought as the "main" class for the skill behaviour.
 
@@ -483,7 +483,7 @@ Whereas these are the main files to take into account, there are other files tha
 * **`handlers.py`**: Defines the `Handlers` (implementing reactive actions) used by the skill. It is mandatory that the skill associated to an agent service implements a handler inherited from the `ABCIRoundHandler`. Other handlers are required according to the actions that the skill is performing (e.g., interacting with an HTTP server). As you can see by exploring the file, little coding is expected unless you need to implement a custom protocol.
 * **`dialogues.py`**: It defines the dialogues associated to the protocols described in the `skill.yaml` configuration file. Again, not much coding is expected in most cases.
 * **`models.py`**: It defines the models of the skill, which usually consist of the `SharedState` and the configuration parameters `Params` classes. The classes defined here are linked with the contents in the section `models` in the file `skill.yaml`.
-* **`fsm_specification.yaml`**: The {{fsm_app}} specification file. It is used for checking the consistency of the implementation, and it can be used to verify the implementation or to [scaffold the {{fsm_app}}](https://docs.autonolas.network/open-autonomy/guides/code_fsm_app_skill.md) providing an initial structure.
+* **`fsm_specification.yaml`**: The {{fsm_app}} specification file. It is used for checking the consistency of the implementation, and it can be used to verify the implementation or to [scaffold the {{fsm_app}}](https://docs.autonolas.network/open-autonomy/guides/code_fsm_app_skill) providing an initial structure.
 
 #### Exploring the agent definition code
 
@@ -542,7 +542,7 @@ The service configuration file `service.yaml` is located in the root folder of t
 └── service.yaml
 ```
 
-You can read the [dedicated section](https://docs.autonolas.network/open-autonomy/configure_service/service_configuration_file.md) to understand the structure and configuration of the `service.yaml` file.
+You can read the [dedicated section](https://docs.autonolas.network/open-autonomy/configure_service/service_configuration_file) to understand the structure and configuration of the `service.yaml` file.
 
 ## Conclusion and further reading
 
@@ -556,5 +556,5 @@ Even though printing `HELLO_WORLD!` on a local console is far from being an exci
 
 In this toy example we are not verifying that the keeper behaves honestly: there is no way for the other agents to verify its console. However, in a real service that implements some critical operation (e.g., like sending a transaction to a blockchain) further verification and security mechanisms have to be put in place.
 
-This walk-through, together with the [overview of the development process](https://docs.autonolas.network/open-autonomy/guides/overview_of_the_development_process.md) should give you some confidence to start creating your first service. Obviously, there are more elements in the {{open_autonomy}} framework that facilitate building complex applications by enabling to interact with blockchains and other networks. We refer the reader to the more advanced sections of the documentation (e.g., key concepts) where we explore in detail the components of the stack.
+This walk-through, together with the [overview of the development process](https://docs.autonolas.network/open-autonomy/guides/overview_of_the_development_process) should give you some confidence to start creating your first service. Obviously, there are more elements in the {{open_autonomy}} framework that facilitate building complex applications by enabling to interact with blockchains and other networks. We refer the reader to the more advanced sections of the documentation (e.g., key concepts) where we explore in detail the components of the stack.
 
