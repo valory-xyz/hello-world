@@ -34,6 +34,7 @@ from packages.valory.skills.hello_world_abci.payloads import (
     RegistrationPayload,
     ResetPayload,
     SelectKeeperPayload,
+    PrintMessageExtraPayload
 )
 from packages.valory.skills.hello_world_abci.rounds import (
     CollectRandomnessRound,
@@ -43,6 +44,7 @@ from packages.valory.skills.hello_world_abci.rounds import (
     ResetAndPauseRound,
     SelectKeeperRound,
     SynchronizedData,
+    PrintMessageExtraRound,
 )
 
 
@@ -206,6 +208,34 @@ class PrintMessageBehaviour(HelloWorldABCIBaseBehaviour, ABC):
         self.set_done()
 
 
+class PrintMessageExtraBehaviour(HelloWorldABCIBaseBehaviour, ABC):
+    """Prints the celebrated 'HELLO WORLD!' message."""
+
+    matching_round = PrintMessageExtraRound
+
+    def async_act(self) -> Generator:
+        """
+        Do the action.
+
+        Steps:
+        - Determine if this agent is the current keeper agent.
+        - Print the appropriate to the local console.
+        - Send the transaction with the printed message and wait for it to be mined.
+        - Wait until ABCI application transitions to the next round.
+        - Go to the next behaviour (set done event).
+        """
+
+        self.context.logger.info("This is my extra behaviour")
+
+        payload = PrintMessageExtraPayload(self.context.agent_address, "this is a dummy payload message")
+
+        yield from self.send_a2a_transaction(payload)
+        yield from self.wait_until_round_end()
+
+        self.set_done()
+
+
+
 class ResetAndPauseBehaviour(HelloWorldABCIBaseBehaviour):
     """Reset behaviour."""
 
@@ -252,4 +282,5 @@ class HelloWorldRoundBehaviour(AbstractRoundBehaviour):
         SelectKeeperBehaviour,  # type: ignore
         PrintMessageBehaviour,  # type: ignore
         ResetAndPauseBehaviour,  # type: ignore
+        PrintMessageExtraBehaviour,
     }

@@ -39,6 +39,7 @@ from packages.valory.skills.hello_world_abci.payloads import (
     RegistrationPayload,
     ResetPayload,
     SelectKeeperPayload,
+    PrintMessageExtraPayload
 )
 
 
@@ -68,6 +69,10 @@ class SynchronizedData(
             List[str],
             self.db.get_strict("printed_messages"),
         )
+
+    @property
+    def my_dummy_data(self) -> str:
+        return self.db.get_strict("my_dummy_data")
 
 
 class HelloWorldABCIAbstractRound(AbstractRound, ABC):
@@ -144,6 +149,24 @@ class PrintMessageRound(CollectDifferentUntilAllRound, HelloWorldABCIAbstractRou
         return None
 
 
+class PrintMessageExtraRound(CollectSameUntilThresholdRound, HelloWorldABCIAbstractRound):
+    """A round in which the keeper prints the message"""
+
+    payload_class = PrintMessageExtraPayload
+
+    def end_block(self) -> Optional[Tuple[BaseSynchronizedData, Event]]:
+        """Process the end of the block."""
+        if self.threshold_reached:
+            synchronized_data = self.synchronized_data.update(
+                synchronized_data_class=SynchronizedData,
+                **{
+                    get_name(SynchronizedData.my_dummy_data): "my_dummy_data"
+                }
+            )
+            return synchronized_data, Event.DONE
+        return None
+
+
 class ResetAndPauseRound(CollectSameUntilThresholdRound, HelloWorldABCIAbstractRound):
     """This class represents the base reset round."""
 
@@ -181,7 +204,10 @@ class HelloWorldAbciApp(AbciApp[Event]):
         3. PrintMessageRound
             - done: 4.
             - round timeout: 0.
-        4. ResetAndPauseRound
+        4. PrintMessageExtraRound
+            - done: 5.
+            - round timeout: 0.
+        5. ResetAndPauseRound
             - done: 1.
             - no majority: 0.
             - reset timeout: 0.
@@ -209,6 +235,10 @@ class HelloWorldAbciApp(AbciApp[Event]):
             Event.ROUND_TIMEOUT: RegistrationRound,
         },
         PrintMessageRound: {
+            Event.DONE: PrintMessageExtraRound,
+            Event.ROUND_TIMEOUT: RegistrationRound,
+        },
+        PrintMessageExtraRound: {
             Event.DONE: ResetAndPauseRound,
             Event.ROUND_TIMEOUT: RegistrationRound,
         },

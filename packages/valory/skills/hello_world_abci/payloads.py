@@ -45,6 +45,13 @@ class PrintMessagePayload(BaseTxPayload):
 
 
 @dataclass(frozen=True)
+class PrintMessageExtraPayload(BaseTxPayload):
+    """Represent a transaction payload of type 'randomness'."""
+
+    message: str
+
+
+@dataclass(frozen=True)
 class SelectKeeperPayload(BaseTxPayload):
     """Represent a transaction payload of type 'select_keeper'."""
 
