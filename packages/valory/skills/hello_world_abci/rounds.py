@@ -46,6 +46,7 @@ class Event(Enum):
     """Event enumeration for the Hello World ABCI demo."""
 
     DONE = "done"
+    NONE = "none"
     ROUND_TIMEOUT = "round_timeout"
     NO_MAJORITY = "no_majority"
     RESET_TIMEOUT = "reset_timeout"
@@ -106,6 +107,7 @@ class CollectRandomnessRound(
     payload_class = CollectRandomnessPayload
     synchronized_data_class = SynchronizedData
     done_event = Event.DONE
+    none_event = Event.NONE
     no_majority_event = Event.NO_MAJORITY
     collection_key = get_name(SynchronizedData.participant_to_randomness)
     selection_key = get_name(SynchronizedData.most_voted_randomness)
