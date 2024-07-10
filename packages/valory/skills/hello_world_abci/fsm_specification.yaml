@@ -1,5 +1,6 @@
 alphabet_in:
 - DONE
+- NONE
 - NO_MAJORITY
 - RESET_TIMEOUT
 - ROUND_TIMEOUT
@@ -16,6 +17,7 @@ states:
 - SelectKeeperRound
 transition_func:
     (CollectRandomnessRound, DONE): SelectKeeperRound
+    (CollectRandomnessRound, NONE): CollectRandomnessRound
     (CollectRandomnessRound, NO_MAJORITY): CollectRandomnessRound
     (CollectRandomnessRound, ROUND_TIMEOUT): CollectRandomnessRound
     (PrintMessageRound, DONE): ResetAndPauseRound
@@ -25,5 +27,6 @@ transition_func:
     (ResetAndPauseRound, NO_MAJORITY): RegistrationRound
     (ResetAndPauseRound, RESET_TIMEOUT): RegistrationRound
     (SelectKeeperRound, DONE): PrintMessageRound
+    (SelectKeeperRound, NONE): RegistrationRound
     (SelectKeeperRound, NO_MAJORITY): RegistrationRound
     (SelectKeeperRound, ROUND_TIMEOUT): RegistrationRound
