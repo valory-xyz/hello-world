@@ -177,10 +177,12 @@ class HelloWorldAbciApp(AbciApp[Event]):
             - done: 1.
         1. CollectRandomnessRound
             - done: 2.
+            - none: 1.
             - no majority: 1.
             - round timeout: 1.
         2. SelectKeeperRound
             - done: 3.
+            - none: 0.
             - no majority: 0.
             - round timeout: 0.
         3. PrintMessageRound
@@ -205,11 +207,13 @@ class HelloWorldAbciApp(AbciApp[Event]):
         },
         CollectRandomnessRound: {
             Event.DONE: SelectKeeperRound,
+            Event.NONE: CollectRandomnessRound,
             Event.NO_MAJORITY: CollectRandomnessRound,
             Event.ROUND_TIMEOUT: CollectRandomnessRound,
         },
         SelectKeeperRound: {
             Event.DONE: PrintMessageRound,
+            Event.NONE: RegistrationRound,
             Event.NO_MAJORITY: RegistrationRound,
             Event.ROUND_TIMEOUT: RegistrationRound,
         },
