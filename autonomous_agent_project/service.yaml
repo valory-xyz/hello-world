@@ -1,0 +1,59 @@
+name: autonomous_agent
+author: charil
+version: 0.1.0
+description: A demonstration of an autonomous agent system with reactive and proactive behaviors.
+aea_version: '>=1.0.0, <2.0.0'
+license: Apache-2.0
+fingerprint:
+  README.md: bafybeiapubcoersqnsnh3acia5hd7otzt7kjxekr6gkbrlumv6tkajl6jm
+fingerprint_ignore_patterns: []
+agent: charil/autonomous_agent:0.1.0:bafybeihtmp45mbfs5tyzrgxfoimh552on6dif42ifqidifait3ej2m5zvq
+number_of_agents: 2
+deployment: {}
+---
+extra:
+  benchmark_persistence_params:
+    args: &benchmark_args
+      log_dir: ${LOG_DIR:str:/benchmarks}
+  params_args:
+    args:
+      setup: &setup_args
+        all_participants: ${ALL_PARTICIPANTS:list:["0x0000000000000000000000000000000000000000"]}
+        safe_contract_address: ${SAFE_CONTRACT_ADDRESS:str:0x0000000000000000000000000000000000000000}
+        consensus_threshold: ${CONSENSUS_THRESHOLD:int:null}
+public_id: charil/autonomous_agent_abci:0.1.0
+type: skill
+0:
+  models:
+    params:
+      args:
+        service_registry_address: ${SERVICE_REGISTRY_ADDRESS:str:null}
+        share_tm_config_on_startup: ${SHARE_TM_CONFIG_ON_STARTUP:bool:false}
+        on_chain_service_id: ${ON_CHAIN_SERVICE_ID:int:null}
+        setup: *setup_args
+        autonomous_message: ${AUTONOMOUS_MESSAGE_0:str:Hello from Agent 0}
+        reset_pause_duration: ${RESET_PAUSE_DURATION:int:5}
+    benchmark_tool:
+      args: *benchmark_args
+1:
+  models:
+    params:
+      args:
+        service_registry_address: ${SERVICE_REGISTRY_ADDRESS:str:null}
+        share_tm_config_on_startup: ${SHARE_TM_CONFIG_ON_STARTUP:bool:false}
+        on_chain_service_id: ${ON_CHAIN_SERVICE_ID:int:null}
+        setup: *setup_args
+        autonomous_message: ${AUTONOMOUS_MESSAGE_1:str:Hello from Agent 1}
+        reset_pause_duration: ${RESET_PAUSE_DURATION:int:5}
+    benchmark_tool:
+      args: *benchmark_args
+---
+public_id: charil/ledger:0.1.0
+type: connection
+config:
+  ledger_apis:
+    ethereum:
+      address: ${LEDGER_RPC:str:http://localhost:8545}
+      chain_id: ${CHAIN_ID:int:31337}
+      poa_chain: ${IS_POA_CHAIN:bool:false}
+      default_gas_price_strategy: ${DEFAULT_GAS_PRICE_STRATEGY:str:eip1559}
