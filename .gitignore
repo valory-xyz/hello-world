@@ -414,3 +414,4 @@ temp/
 
 logs.db
 agent/
+ethereum_private_key.txt

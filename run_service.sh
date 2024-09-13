@@ -8,6 +8,9 @@ if test -d hello_world; then
   sudo rm -r hello_world
 fi
 
+# Ensure hashes are updated
+autonomy packages lock
+
 # Push packages and fetch service
 make clean
 
