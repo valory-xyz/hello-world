@@ -24,7 +24,7 @@ import os
 from pathlib import Path
 
 import yaml
-from dotenv import load_dotenv
+from dotenv import load_dotenv  # type: ignore
 
 
 def main() -> None:
