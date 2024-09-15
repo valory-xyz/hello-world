@@ -78,6 +78,7 @@ class RegistrationBehaviour(HelloWorldABCIBaseBehaviour):
         - Go to the next behaviour (set done event).
         """
         payload = RegistrationPayload(self.context.agent_address)
+        self.context.shared_state["owner"] = self.params.owner
         yield from self.send_a2a_transaction(payload)
         yield from self.wait_until_round_end()
         self.set_done()
@@ -184,12 +185,13 @@ class PrintMessageBehaviour(HelloWorldABCIBaseBehaviour, ABC):
         - Wait until ABCI application transitions to the next round.
         - Go to the next behaviour (set done event).
         """
-
+        
+        owner =  self.context.shared_state.get("owner", None)
         if (
             self.context.agent_address
             == self.synchronized_data.most_voted_keeper_address
         ):
-            message = self.params.hello_world_string
+            message = f"{self.params.hello_world_string} The owner’s address is {owner}"
         else:
             message = ":|"
 
