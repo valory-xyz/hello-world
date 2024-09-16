@@ -520,7 +520,7 @@ protocols:
 skills:
 - valory/abstract_abci:0.1.0
 - valory/abstract_round_abci:0.1.0
-- valory/hello_world_abci:0.1.0
+- valory/hello_world_abci:0.1.1
 # (...)
 ```
 

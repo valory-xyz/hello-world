@@ -79,7 +79,7 @@ class BaseHelloWorldABCITest(
     """Test the hello_world_abci skill with four agents."""
 
     agent_package = "valory/hello_world:0.1.0"
-    skill_package = "valory/hello_world_abci:0.1.0"
+    skill_package = "valory/hello_world_abci:0.1.1"
     wait_to_finish = 160
     happy_path = HAPPY_PATH
     key_pairs = KEY_PAIRS

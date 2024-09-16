@@ -1,6 +1,6 @@
 agent_name: hello_world
 author: valory
-version: 0.1.0
+version: 0.1.1
 license: Apache-2.0
 description: Hello World ABCI example.
 aea_version: '>=1.0.0, <2.0.0'
@@ -8,7 +8,7 @@ fingerprint:
   README.md: bafybeifzdekpjcas6egpwxj24tir5ozzffmkq5ecyi6rw3i6fqfd763etu
   __init__.py: bafybeiehvk4wlv2bcbplwc66owg4qdnisiihijq7iegcmjjxtz3dulnrgm
   tests/__init__.py: bafybeiasj5kqyvalbnedototb6ooxfnro3vjmgscja2iccccotfjnd6cha
-  tests/test_hello_world.py: bafybeifbgqpywtwhk6n4wngdrrk3oujwqw3fsbk54gsw5sep3pkkgym2ue
+  tests/test_hello_world.py: bafybeibvlhgro7ef24nht3nj4p34mpkgqsclftfj7cagkkgugyt3yau6cm
 fingerprint_ignore_patterns: []
 connections:
 - valory/abci:0.1.0:bafybeicidr6u3w4vbalvrsfo4xraptxuti7cyrjlvqqn7udekxpm5hnho4
@@ -25,7 +25,7 @@ protocols:
 skills:
 - valory/abstract_abci:0.1.0:bafybeicr24cgdovqdp4bh25bpun77v7u33maydwuxwled3tuhyiaepw5gu
 - valory/abstract_round_abci:0.1.0:bafybeia6lemk5s64f26qjnd2746s5mufpzxuaf5frsqhfbr62kk3ma6sp4
-- valory/hello_world_abci:0.1.0:bafybeiebittgfcz4idj633fkrvu6qle2ajekdjxpp7slggyur7vv7s7hrq
+- valory/hello_world_abci:0.1.1:bafybeidbkezfvkjzryessj5nzsqqapyfngz6gcs4j52evkxteh2zaohwni
 default_ledger: ethereum
 required_ledgers:
 - ethereum
@@ -61,7 +61,7 @@ dependencies:
     version: ==0.15.0
 default_connection: null
 ---
-public_id: valory/hello_world_abci:0.1.0
+public_id: valory/hello_world_abci:0.1.1
 type: skill
 models:
   benchmark_tool:
@@ -70,6 +70,7 @@ models:
   params:
     args:
       hello_world_message: ${str:HELLO_WORLD!}
+      owner_address: ${str:0x0000000000000000000000000000000000000000}
       reset_pause_duration: ${int:10}
       service_registry_address: ${str:null}
       share_tm_config_on_startup: ${bool:false}
@@ -85,7 +86,7 @@ models:
 public_id: valory/abci:0.1.0
 type: connection
 config:
-  target_skill_id: valory/hello_world_abci:0.1.0
+  target_skill_id: valory/hello_world_abci:0.1.1
   host: ${str:localhost}
   port: ${int:26658}
   use_tendermint: ${bool:false}

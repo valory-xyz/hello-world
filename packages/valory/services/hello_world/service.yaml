@@ -1,13 +1,13 @@
 name: hello_world
 author: valory
-version: 0.1.0
+version: 0.1.1
 description: A simple demonstration of a simple ABCI application
 aea_version: '>=1.0.0, <2.0.0'
 license: Apache-2.0
 fingerprint:
   README.md: bafybeiapubcoersqnsnh3acia5hd7otzt7kjxekr6gkbrlumv6tkajl6jm
 fingerprint_ignore_patterns: []
-agent: valory/hello_world:0.1.0:bafybeihtmp45mbfs5tyzrgxfoimh552on6dif42ifqidifait3ej2m5zvq
+agent: valory/hello_world:0.1.1:bafybeigp3ni5tx2dv4ymnhq5rqlrbv2shdxz2l57hkzf6b3pw32xbpb5pe
 number_of_agents: 4
 deployment: {}
 ---
@@ -21,7 +21,7 @@ extra:
         all_participants: ${ALL_PARTICIPANTS:list:["0x0000000000000000000000000000000000000000"]}
         safe_contract_address: ${SAFE_CONTRACT_ADDRESS:str:0x0000000000000000000000000000000000000000}
         consensus_threshold: ${CONSENSUS_THRESHOLD:int:null}
-public_id: valory/hello_world_abci:0.1.0
+public_id: valory/hello_world_abci:0.1.1
 type: skill
 0:
   models:
@@ -32,6 +32,7 @@ type: skill
         on_chain_service_id: ${ON_CHAIN_SERVICE_ID:int:null}
         setup: *id001
         hello_world_message: ${HELLO_WORLD_STRING_0:str:HELLO_WORLD! (from Agent 0)}
+        owner_address: ${OWNER_ADDRESS_0:str:0x0000000000000000000000000000000000000000}
         reset_pause_duration: ${RESET_PAUSE_DURATION:int:10}
     benchmark_tool:
       args: *id002
@@ -44,6 +45,7 @@ type: skill
         on_chain_service_id: ${ON_CHAIN_SERVICE_ID:int:null}
         setup: *id001
         hello_world_message: ${HELLO_WORLD_STRING_1:str:HELLO_WORLD! (from Agent 1)}
+        owner_address: ${OWNER_ADDRESS_1:str:0x0000000000000000000000000000000000000000}
         reset_pause_duration: ${RESET_PAUSE_DURATION:int:10}
     benchmark_tool:
       args: *id002
@@ -56,6 +58,7 @@ type: skill
         on_chain_service_id: ${ON_CHAIN_SERVICE_ID:int:null}
         setup: *id001
         hello_world_message: ${HELLO_WORLD_STRING_2:str:HELLO_WORLD! (from Agent 2)}
+        owner_address: ${OWNER_ADDRESS_2:str:0x0000000000000000000000000000000000000000}
         reset_pause_duration: ${RESET_PAUSE_DURATION:int:10}
     benchmark_tool:
       args: *id002
@@ -68,6 +71,7 @@ type: skill
         on_chain_service_id: ${ON_CHAIN_SERVICE_ID:int:null}
         setup: *id001
         hello_world_message: ${HELLO_WORLD_STRING_3:str:HELLO_WORLD! (from Agent 3)}
+        owner_address: ${OWNER_ADDRESS_3:str:0x0000000000000000000000000000000000000000}
         reset_pause_duration: ${RESET_PAUSE_DURATION:int:10}
     benchmark_tool:
       args: *id002
