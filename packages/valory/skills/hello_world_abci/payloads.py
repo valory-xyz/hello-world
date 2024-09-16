@@ -45,6 +45,13 @@ class PrintMessagePayload(BaseTxPayload):
 
 
 @dataclass(frozen=True)
+class CountPrintMessagePayload(BaseTxPayload):
+    """Represent a transaction payload of type ''."""
+
+    print_count: int
+
+
+@dataclass(frozen=True)
 class SelectKeeperPayload(BaseTxPayload):
     """Represent a transaction payload of type 'select_keeper'."""
 

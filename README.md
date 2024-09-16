@@ -30,10 +30,15 @@ Example of an autonomous service using the [Open Autonomy](https://docs.autonola
       autonomy packages sync --update-packages
 
 ## Deploy the service
+- If making local changes, make sure to update the version in the packages.json 
+  file under `dev` (and other references) and run 
+      autonomy packages lock
+      autonomy push-all
+  also don't forget to update the version in the skill __init__ file
 
 - Fetch the service from the local registry:
 
-      autonomy fetch valory/hello_world:0.1.0 --local --service --alias hello_world_service; cd hello_world_service
+      autonomy fetch valory/hello_world:0.1.2 --local --service --alias hello_world_service; cd hello_world_service
 
 - Build the agent's service image:
 
