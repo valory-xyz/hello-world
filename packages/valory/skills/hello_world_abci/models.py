@@ -48,6 +48,7 @@ class SharedState(BaseSharedState):
         """Initialize shared state."""
         super().__init__(*args, **kwargs)
         self.owner = None  # Add the owner address field
+        self.print_count = 0  # Add the print count field
 
     def setup(self) -> None:
         """Set up."""
@@ -59,6 +60,11 @@ class SharedState(BaseSharedState):
         HelloWorldAbciApp.event_to_timeout[Event.RESET_TIMEOUT] = (
             self.context.params.reset_pause_duration + MARGIN
         )
+
+    @property
+    def print_count(self) -> int:
+        """Get the print count."""
+        return self.db.get("print_count", 0)  # Default to 0 if not set
 
 
 class HelloWorldParams(BaseParams):

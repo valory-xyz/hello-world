@@ -23,6 +23,9 @@ extra:
         consensus_threshold: ${CONSENSUS_THRESHOLD:int:null}
 public_id: valory/hello_world_abci:0.1.0
 type: skill
+rounds:
+  - PrintMessageRound
+  - PrintCountRound  # Added the new round here
 0:
   models:
     params:

@@ -12,6 +12,7 @@ start_states:
 states:
 - CollectRandomnessRound
 - PrintMessageRound
+- PrintCountRound  # Added the new PrintCountRound
 - RegistrationRound
 - ResetAndPauseRound
 - SelectKeeperRound
@@ -20,8 +21,9 @@ transition_func:
     (CollectRandomnessRound, NONE): CollectRandomnessRound
     (CollectRandomnessRound, NO_MAJORITY): CollectRandomnessRound
     (CollectRandomnessRound, ROUND_TIMEOUT): CollectRandomnessRound
-    (PrintMessageRound, DONE): ResetAndPauseRound
+    (PrintMessageRound, DONE): PrintCountRound  # Transition to PrintCountRound after PrintMessageRound
     (PrintMessageRound, ROUND_TIMEOUT): RegistrationRound
+    (PrintCountRound, DONE): ResetAndPauseRound  # Transition from PrintCountRound to ResetAndPauseRound
     (RegistrationRound, DONE): CollectRandomnessRound
     (ResetAndPauseRound, DONE): CollectRandomnessRound
     (ResetAndPauseRound, NO_MAJORITY): RegistrationRound
@@ -30,3 +32,4 @@ transition_func:
     (SelectKeeperRound, NONE): RegistrationRound
     (SelectKeeperRound, NO_MAJORITY): RegistrationRound
     (SelectKeeperRound, ROUND_TIMEOUT): RegistrationRound
+    

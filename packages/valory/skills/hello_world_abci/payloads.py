@@ -22,6 +22,7 @@
 from dataclasses import dataclass
 
 from packages.valory.skills.abstract_round_abci.base import BaseTxPayload
+from packages.valory.protocols.ledger_api.custom_types import TxData
 
 
 @dataclass(frozen=True)
@@ -56,3 +57,15 @@ class ResetPayload(BaseTxPayload):
     """Represent a transaction payload of type 'reset'."""
 
     period_count: int
+
+
+class PrintCountPayload(BaseTxPayload):
+    """Payload to store the updated print count."""
+
+    def __init__(self, sender: str, print_count: int, **kwargs):
+        super().__init__(sender=sender, **kwargs)
+        self.print_count = print_count
+
+    @property
+    def tx_data(self) -> TxData:
+        return TxData(f"print_count:{self.print_count}")
