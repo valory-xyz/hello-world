@@ -61,7 +61,12 @@ class HelloWorldParams(BaseParams):
     def __init__(self, *args: Any, **kwargs: Any) -> None:
         """Initialize the parameters."""
         self.hello_world_string: str = self._ensure("hello_world_message", kwargs, str)
+        self.owner_address: str = kwargs.get("owner_address", "0x0000000000000000000000000000000000000000")  # Added owner_address
         super().__init__(*args, **kwargs)
+
+    def print_owner(self) -> None:
+        """Print the owner's address."""
+        print(f"Hello world! The owner’s address is {self.owner_address}")
 
 
 RandomnessApi = ApiSpecs
