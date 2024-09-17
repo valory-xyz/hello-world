@@ -44,9 +44,15 @@ class SharedState(BaseSharedState):
 
     abci_app_cls = HelloWorldAbciApp
 
+    def __init__(self, *args: Any, **kwargs: Any) -> None:
+        """Initialize shared state."""
+        super().__init__(*args, **kwargs)
+        self.owner = None  # Add the owner address field
+
     def setup(self) -> None:
         """Set up."""
         super().setup()
+        self.owner = self.context.params.get("owner", "0x068d5b3EE6cB397785A4Bf043Ea8027f9e7347Db")  # Retrieve owner address
         HelloWorldAbciApp.event_to_timeout[
             Event.ROUND_TIMEOUT
         ] = self.context.params.round_timeout_seconds

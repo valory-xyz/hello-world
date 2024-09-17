@@ -193,10 +193,14 @@ class PrintMessageBehaviour(HelloWorldABCIBaseBehaviour, ABC):
         else:
             message = ":|"
 
+        # Added this line to print the owner's address
+        owner_message = f"Hello world! The owner's address is {self.context.shared_state.owner}"
+
         printed_message = f"Agent {self.context.agent_name} (address {self.context.agent_address}) in period {self.synchronized_data.period_count} says: {message}"
 
         print(printed_message)
         self.context.logger.info(f"printed_message={printed_message}")
+        self.context.logger.info(owner_message)  # Log the owner address
 
         payload = PrintMessagePayload(self.context.agent_address, printed_message)
 
