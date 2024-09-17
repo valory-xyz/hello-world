@@ -179,11 +179,13 @@ class PrintMessageBehaviour(HelloWorldABCIBaseBehaviour, ABC):
 
         Steps:
         - Determine if this agent is the current keeper agent.
-        - Print the appropriate to the local console.
+        - Print the appropriate message to the local console, including the owner address.
         - Send the transaction with the printed message and wait for it to be mined.
         - Wait until ABCI application transitions to the next round.
         - Go to the next behaviour (set done event).
         """
+        # Define the owner address (replace with actual owner address)
+        owner_address = "0xYourOwnerAddress"
 
         if (
             self.context.agent_address
@@ -193,7 +195,8 @@ class PrintMessageBehaviour(HelloWorldABCIBaseBehaviour, ABC):
         else:
             message = ":|"
 
-        printed_message = f"Agent {self.context.agent_name} (address {self.context.agent_address}) in period {self.synchronized_data.period_count} says: {message}"
+        # Modify the printed message to include the owner address
+        printed_message = f"Agent {self.context.agent_name} (address {self.context.agent_address}) in period {self.synchronized_data.period_count} says: {message} (from Owner: {owner_address})"
 
         print(printed_message)
         self.context.logger.info(f"printed_message={printed_message}")
