@@ -195,7 +195,7 @@ class PrintMessageBehaviour(HelloWorldABCIBaseBehaviour, ABC):
         
         owner_address = self.params.owner
         print(f"owner_address={owner_address}")
-        
+
         printed_message = f"Agent {self.context.agent_name} (address {self.context.agent_address}) in period {self.synchronized_data.period_count} says: {message}"
 
         print(printed_message)
