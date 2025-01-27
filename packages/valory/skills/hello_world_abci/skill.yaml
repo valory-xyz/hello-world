@@ -97,6 +97,7 @@ models:
           version: {}
         voting_power: '10'
       hello_world_message: HELLO_WORLD!
+      owner_address: "0x123476778678HQASB"
       keeper_timeout: 30.0
       max_attempts: 10
       max_healthcheck: 120
