@@ -1,0 +1,30 @@
+agent_name: memeooorr_eliza
+author: keshav9898
+version: 0.1.0
+license: Apache-2.0
+description: This is my awesome agent.
+aea_version: '>=1.0.0, <2.0.0'
+fingerprint:
+  README.md: bafybeifzdekpjcas6egpwxj24tir5ozzffmkq5ecyi6rw3i6fqfd763etu
+  __init__.py: bafybeiehvk4wlv2bcbplwc66owg4qdnisiihijq7iegcmjjxtz3dulnrgm
+fingerprint_ignore_patterns: []
+connections: []
+contracts: []
+protocols: []
+skills: []
+customs: []
+default_ledger: ethereum
+required_ledgers:
+- ethereum
+default_routing: {}
+connection_private_key_paths: {}
+private_key_paths: {}
+logging_config:
+  disable_existing_loggers: false
+  version: 1
+dependencies:
+  open-aea-ledger-cosmos:
+    version: ==1.63.0
+  open-aea-ledger-ethereum:
+    version: ==1.63.0
+default_connection: null

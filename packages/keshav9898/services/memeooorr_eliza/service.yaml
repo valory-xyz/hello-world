@@ -1,0 +1,33 @@
+name: memeooorr_eliza
+author: keshav9898
+version: 0.1.0
+description: This is my awesome agent service.
+aea_version: '>=1.0.0, <2.0.0'
+license: Apache-2.0
+fingerprint:
+  README.md: bafybeiapubcoersqnsnh3acia5hd7otzt7kjxekr6gkbrlumv6tkajl6jm
+fingerprint_ignore_patterns: []
+agent: keshav9898/memeooorr_eliza:0.1.0:bafybeie2ba5qqyas2ge4fu62hpab56w673uxvrf4wfkxmpodhpckmio2xe
+number_of_agents: 1
+deployment: {}
+---
+public_id: valory/ledger:0.19.0
+type: connection
+config:
+  ledger_apis:
+    base:
+      address: ${BASE_LEDGER_RPC:str:http://localhost:8545}
+      chain_id: ${BASE_CHAIN_ID:int:8453}
+      poa_chain: ${IS_POA_CHAIN:bool:false}
+      default_gas_price_strategy: ${DEFAULT_GAS_PRICE_STRATEGY:str:eip1559}
+---
+public_id: keshav9898/configs:0.19.0
+type: connection
+config:
+  TWITTER_USERNAME: ${TWIKIT_USERNAME:str:xyyyxx}
+  TWITTER_PASSWORD: ${TWIKIT_PASSWORD:str:xxxxxxx#}
+  TWITTER_EMAIL: ${TWIKIT_EMAIL:str:abc@abc.xyz}
+  OPENAI_API_KEY: ${OPENAI_API_KEY:str:sk-XXXXXXXXXXXXXXXX}
+  SAFE_CONTRACT_ADDRESSES: ${SAFE_CONTRACT_ADDRESSES:str:0x00000}
+  BASE_LEDGER_RPC: ${BASE_LEDGER_RPC:str:#####}
+  STORE_PATH: ${STORE_PATH:str:path/to/store}
