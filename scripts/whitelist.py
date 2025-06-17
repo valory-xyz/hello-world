@@ -43,3 +43,4 @@ path_to_skill  # unused variable (packages/valory/skills/hello_world_abci/tests/
 return_value  # unused attribute (packages/valory/skills/hello_world_abci/tests/test_behaviours.py:340)
 none_event  # unused variable (packages/valory/skills/hello_world_abci/rounds.py:110)
 none_event  # unused variable (packages/valory/skills/hello_world_abci/rounds.py:122)
+extended_requirements  # unused variable (packages/valory/skills/hello_world_abci/rounds.py:156)
