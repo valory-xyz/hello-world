@@ -153,6 +153,7 @@ class ResetAndPauseRound(CollectSameUntilThresholdRound, HelloWorldABCIAbstractR
     payload_class = ResetPayload
     _allow_rejoin_payloads = True
     synchronized_data_class = SynchronizedData
+    extended_requirements: Tuple[str, ...] = tuple()
 
     def end_block(self) -> Optional[Tuple[BaseSynchronizedData, Event]]:
         """Process the end of the block."""
