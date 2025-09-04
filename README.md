@@ -1,6 +1,6 @@
 # Hello World agent service
 
-Example of an autonomous service using the [Open Autonomy](https://docs.autonolas.network/open-autonomy/) framework. It comprises a set of 4 autonomous agents designed to achieve consensus. The objective is to decide which agent should print a "Hello World" message on its console in each iteration. Please refer to the [Open Autonomy documentation - Demos - Hello World](https://docs.autonolas.network/demos/hello-world/) for more detailed information.
+Example of an autonomous service using the [Open Autonomy](https://stack.olas.network/open-autonomy/) framework. It comprises a set of 4 autonomous agents designed to achieve consensus. The objective is to decide which agent should print a "Hello World" message on its console in each iteration. Please refer to the [Open Autonomy documentation - Demos - Hello World](https://stack.olas.network/demos/hello-world/) for more detailed information.
 
 ## System requirements
 
@@ -9,7 +9,7 @@ Example of an autonomous service using the [Open Autonomy](https://docs.autonola
 - [Pipenv](https://pipenv.pypa.io/en/latest/installation/) `>=2021.x.xx`
 - [Docker Engine](https://docs.docker.com/engine/install/)
 - [Docker Compose](https://docs.docker.com/compose/install/)
-- The [Open Autonomy](https://docs.autonolas.network/open-autonomy/guides/set_up/#set-up-the-framework) framework
+- The [Open Autonomy](https://stack.olas.network/open-autonomy/guides/set_up/#set-up-the-framework) framework
 
 ## Prepare the environment
 
