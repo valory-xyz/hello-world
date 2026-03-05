@@ -20,12 +20,15 @@
 
 
 """Updates fetched agent with correct config"""
+
 import os
 from pathlib import Path
 
 import yaml
 from dotenv import load_dotenv  # type: ignore
 
+
+print(os.getenv('ALL_PARTICIPANTS'))
 
 def main() -> None:
     """Main"""
