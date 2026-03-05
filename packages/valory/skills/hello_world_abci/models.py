@@ -31,7 +31,6 @@ from packages.valory.skills.abstract_round_abci.models import (
 )
 from packages.valory.skills.hello_world_abci.rounds import Event, HelloWorldAbciApp
 
-
 MARGIN = 5
 
 
@@ -47,9 +46,9 @@ class SharedState(BaseSharedState):
     def setup(self) -> None:
         """Set up."""
         super().setup()
-        HelloWorldAbciApp.event_to_timeout[
-            Event.ROUND_TIMEOUT
-        ] = self.context.params.round_timeout_seconds
+        HelloWorldAbciApp.event_to_timeout[Event.ROUND_TIMEOUT] = (
+            self.context.params.round_timeout_seconds
+        )
         HelloWorldAbciApp.event_to_timeout[Event.RESET_TIMEOUT] = (
             self.context.params.reset_pause_duration + MARGIN
         )

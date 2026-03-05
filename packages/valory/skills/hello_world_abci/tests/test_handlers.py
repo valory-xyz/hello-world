@@ -21,7 +21,6 @@
 
 import packages.valory.skills.hello_world_abci.handlers  # noqa
 
-
 # pylint: skip-file
 
 

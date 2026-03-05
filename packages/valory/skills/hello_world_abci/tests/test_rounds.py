@@ -50,7 +50,6 @@ from packages.valory.skills.hello_world_abci.rounds import (
     SynchronizedData,
 )
 
-
 MAX_PARTICIPANTS: int = 4
 RANDOMNESS: str = "d1c29dce46f979f9748210d24bce4eae8be91272f5ca1a6aea2832d3dd676f51"
 

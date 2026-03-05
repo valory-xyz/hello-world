@@ -44,7 +44,6 @@ from packages.valory.skills.hello_world_abci.behaviours import (
 )
 from packages.valory.skills.hello_world_abci.rounds import Event, SynchronizedData
 
-
 PACKAGE_DIR = Path(__file__).parent.parent
 
 
