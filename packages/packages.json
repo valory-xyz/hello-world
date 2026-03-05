@@ -20,6 +20,6 @@
         "connection/valory/ledger/0.19.0": "bafybeid5uwx4uqxkiibw6kazr7my5mk5kcqg2dx2owtcf7kcpbs2jrns2e",
         "connection/valory/p2p_libp2p_client/0.1.0": "bafybeielj3jso3wvrarp5n5rq7llpw4vgxybqiyensgjalb5ubfiawwhhu",
         "skill/valory/abstract_abci/0.1.0": "bafybeie7omzycvazfg6edexn2k3fteuey3alopfmlwye6e44exfcxv5apa",
-        "skill/valory/abstract_round_abci/0.1.0": "bafybeiaovmroqili7bnggextzzqtmykdxyf5zwwfyse4t6gvwee6o7gvoy"
+        "skill/valory/abstract_round_abci/0.1.0": "bafybeicehi2yqab3lldm7qzoqev3tmqrdk275sbtcabneyorhmzft76z7m"
     }
 }
