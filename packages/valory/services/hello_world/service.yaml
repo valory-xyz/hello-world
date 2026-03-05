@@ -2,12 +2,12 @@ name: hello_world
 author: valory
 version: 0.1.0
 description: A simple demonstration of a simple ABCI application
-aea_version: '>=1.0.0, <2.0.0'
+aea_version: '>=2.0.0, <3.0.0'
 license: Apache-2.0
 fingerprint:
   README.md: bafybeih6exsbttw2olhna7wxhto2mnvr3i4fsjslqcdrfjzzxcjhqgg3li
 fingerprint_ignore_patterns: []
-agent: valory/hello_world:0.1.0:bafybeigfvkvjaqnelvjgrl2uroxdrwlcsabnusgdnkbsu6smwtg6skd52y
+agent: valory/hello_world:0.1.0:bafybeihtujqfqvj2sljvuiudxauzreiem4anoc7jzm7saeagj7aul7zxmq
 number_of_agents: 4
 deployment: {}
 ---

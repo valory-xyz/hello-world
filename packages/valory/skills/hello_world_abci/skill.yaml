@@ -4,7 +4,7 @@ version: 0.1.0
 type: skill
 description: Hello World ABCI application.
 license: Apache-2.0
-aea_version: '>=1.0.0, <2.0.0'
+aea_version: '>=2.0.0, <3.0.0'
 fingerprint:
   README.md: bafybeiae3kr5craahguvfawc7xviokzy4zmhde3aapvypctrlxb4pen5j4
   __init__.py: bafybeibiblks3d3s3ditug4hfzl3ob3cibokcz4ofs7cbbsbqw5zzbtd3m
@@ -27,7 +27,7 @@ connections: []
 contracts: []
 protocols: []
 skills:
-- valory/abstract_round_abci:0.1.0:bafybeiamu3ncoyjgfp4pagzkeysleavqayhx6fhvvexu6mfgxbyrfyezri
+- valory/abstract_round_abci:0.1.0:bafybeiaovmroqili7bnggextzzqtmykdxyf5zwwfyse4t6gvwee6o7gvoy
 behaviours:
   main:
     args: {}
