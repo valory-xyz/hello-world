@@ -29,7 +29,7 @@ Example of an autonomous AI agent using the [Open Autonomy](https://stack.olas.n
 
       autonomy packages sync --update-packages
 
-## Deploy the AI agent
+## Deploy the AI agent (four agents, Docker Compose)
 
 - Fetch the AI agent from the local registry:
 
@@ -56,3 +56,13 @@ Example of an autonomous AI agent using the [Open Autonomy](https://stack.olas.n
 - Run the deployment:
 
       autonomy deploy run --build-dir ./abci_build/
+
+## Deploy the AI agent (single agent)
+
+- Generate a local `.env`file with the following contents:
+  
+      ```test
+      ALL_PARTICIPANTS='["0xYourAgentAddress"]'
+      ```
+
+- Execute make command `make run-agent`.

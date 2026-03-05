@@ -20,10 +20,11 @@ fi
 find . -empty -type d -delete
 
 # Ensure that third party packages are correctly synced
-make clean
-AUTONOMY_VERSION=v$(autonomy --version | grep -oP '(?<=version\s)\S+')
-AEA_VERSION=v$(aea --version | grep -oP '(?<=version\s)\S+')
-autonomy packages sync --source valory-xyz/open-aea:$AEA_VERSION --source valory-xyz/open-autonomy:$AUTONOMY_VERSION --update-packages
+# make clean
+# AUTONOMY_VERSION=v$(autonomy --version | grep -oP '(?<=version\s)\S+')
+# AEA_VERSION=v$(aea --version | grep -oP '(?<=version\s)\S+')
+# autonomy packages sync --source valory-xyz/open-aea:$AEA_VERSION --source valory-xyz/open-autonomy:$AUTONOMY_VERSION --update-packages
+autonomy packages sync
 
 # Ensure hashes are updated
 autonomy packages lock
