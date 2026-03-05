@@ -59,7 +59,7 @@ class HelloWorldAbciFSMBehaviourBaseCase(FSMBehaviourBaseCase):
 
     path_to_skill = PACKAGE_DIR
 
-    def setup(self, **kwargs: Any) -> None:
+    def setup_method(self, **kwargs: Any) -> None:
         """
         Set up the test method.
 
@@ -67,7 +67,7 @@ class HelloWorldAbciFSMBehaviourBaseCase(FSMBehaviourBaseCase):
 
         :param kwargs: the keyword arguments passed to _prepare_skill
         """
-        super().setup(**kwargs)
+        super().setup_method(**kwargs)
         self.synchronized_data = SynchronizedData(
             AbciAppDB(
                 setup_data=dict(
