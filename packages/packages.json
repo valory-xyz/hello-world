@@ -1,8 +1,8 @@
 {
     "dev": {
-        "skill/valory/hello_world_abci/0.1.0": "bafybeidnbhrugjvyqaad6cjtqjjyzk7yj3vuadlftlibe7bimau34rahda",
-        "agent/valory/hello_world/0.1.0": "bafybeig4kt3mqoep6ccqxfmmpp55cmxf7dbfkmwhyzvmcw27e47g5gopim",
-        "service/valory/hello_world/0.1.0": "bafybeialgrbls5fy6futyxawjrxofk7ph7igmnq3jytyui7ndutcm542ga"
+        "skill/valory/hello_world_abci/0.1.0": "bafybeifz43pf5hjrtl2rvprgnfsqwjhbdjerjh3jsbicmyv7uieq5q3z2q",
+        "agent/valory/hello_world/0.1.0": "bafybeiabzfup64vlhpanshytdomolqrg67uuycn7766mcy23ovtuo57iki",
+        "service/valory/hello_world/0.1.0": "bafybeicl7g2jajfebhgdpi25l2b6qfc4cc5k7o4mvp54rbanstvghrebhy"
     },
     "third_party": {
         "protocol/valory/acn/1.1.0": "bafybeiea66z4k6cgcazxd6qzvnkllulyjzbnxufkoenge7qzh4qfogrvoa",
@@ -17,9 +17,9 @@
         "connection/valory/abci/0.1.0": "bafybeibgawlwyrdcghcrq5lbgmwmyyx2o7hn4lffyp5thxm3q3u5haybm4",
         "connection/valory/http_client/0.23.0": "bafybeihel6sg2yayxu7lqygaswdgciaxpqrgsbl5rwx74c6znu5qz2edd4",
         "connection/valory/ipfs/0.1.0": "bafybeihpmn5ur4m6sxbgh4whcp33earzbcn2yd4q4eo6cwdkfkznvdpcqe",
-        "connection/valory/ledger/0.19.0": "bafybeidxzeygks5zcky4u2ztcdufzptssgf6uqytxofnn6yta7qq6jsim4",
+        "connection/valory/ledger/0.19.0": "bafybeid5uwx4uqxkiibw6kazr7my5mk5kcqg2dx2owtcf7kcpbs2jrns2e",
         "connection/valory/p2p_libp2p_client/0.1.0": "bafybeielj3jso3wvrarp5n5rq7llpw4vgxybqiyensgjalb5ubfiawwhhu",
         "skill/valory/abstract_abci/0.1.0": "bafybeie7omzycvazfg6edexn2k3fteuey3alopfmlwye6e44exfcxv5apa",
-        "skill/valory/abstract_round_abci/0.1.0": "bafybeicehi2yqab3lldm7qzoqev3tmqrdk275sbtcabneyorhmzft76z7m"
+        "skill/valory/abstract_round_abci/0.1.0": "bafybeiaovmroqili7bnggextzzqtmykdxyf5zwwfyse4t6gvwee6o7gvoy"
     }
 }
