@@ -28,8 +28,6 @@ import yaml
 from dotenv import load_dotenv  # type: ignore
 
 
-print(os.getenv('ALL_PARTICIPANTS'))
-
 def main() -> None:
     """Main"""
     load_dotenv()
