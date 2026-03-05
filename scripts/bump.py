@@ -40,7 +40,6 @@ from aea.configurations.data_types import Dependency
 from aea.helpers.logging import setup_logger
 from aea.helpers.yaml_utils import yaml_dump, yaml_dump_all, yaml_load, yaml_load_all
 from aea.package_manager.v1 import PackageManagerV1
-
 from autonomy.cli.helpers.ipfs_hash import load_configuration
 
 BUMP_BRANCH = "chore/bump"
