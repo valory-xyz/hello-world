@@ -52,7 +52,6 @@ from packages.valory.skills.hello_world_abci.rounds import (
     SelectKeeperRound,
 )
 
-
 HAPPY_PATH = (
     RoundChecks(RegistrationRound.auto_round_id()),
     RoundChecks(PrintMessageRound.auto_round_id(), n_periods=3),
