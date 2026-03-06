@@ -1,4 +1,4 @@
-# Hello World ABCI Agent
+# Hello World ABCI Agent Blueprint
 
-This agent uses the `abci` connection and the `hello_world_abci` skill
+This agent blueprint uses the `abci` connection and the `hello_world_abci` skill
 to demonstrate a Hello World ABCI implementation.

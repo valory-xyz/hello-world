@@ -1,31 +1,31 @@
-The Hello World service provides an overview of the main components of an [agent service](https://docs.autonolas.network/open-autonomy/get_started/what_is_an_agent_service) and how they work together. The goal of this service is to help new users of Open Autonomy understand how the components of of a service work. While the service itself is very simple, it demonstrates common features found in many agent services and can be used as a starting point for building your own service with more complex functionalities.
+The Hello World AI agent provides an overview of the main components of an [AI agent](https://stack.olas.network/open-autonomy/get_started/what_is_an_agent_service/) and how they work together. The goal of this AI agent is to help new users of Open Autonomy understand how the components of an AI agent work. While the AI agent itself is very simple, it demonstrates common features found in many AI agents and can be used as a starting point for building your own AI agent with more complex functionalities.
 
-## Architecture of the demo
+## Architecture of the demo+
 
 The demo is composed of:
 
-* 4 Docker containers implementing the 4 agents of the service (`abci0`, `abci1`, `abci2`, `abci3`), and
-* 4 Docker containers implementing a [Tendermint](https://tendermint.com/) node for each agent (`node0`, `node1`, `node2`, `node3`).
+* 4 Docker containers implementing the 4 agent instances of the AI agent (`abci0`, `abci1`, `abci2`, `abci3`), and
+* 4 Docker containers implementing a [Tendermint](https://tendermint.com/) node for each agent instance (`node0`, `node1`, `node2`, `node3`).
 
-The agents connect to the remote [DRAND](https://drand.love) service through the Internet during the execution
+The agent instances connect to the remote [DRAND](https://drand.love) service through the Internet during the execution
 of the demo.
 
 <figure markdown>
   ![](./images/hello_world_demo_architecture.svg){align=center}
-  <figcaption>Hello World service demo architecture with four agents</figcaption>
+  <figcaption>Hello World AI agent demo architecture with four agent instances</figcaption>
 </figure>
 
 ## Running the demo
 
-You can find the instructions on how to run the Hello World service in the [quick start](https://docs.autonolas.network/open-autonomy/guides/quick_start) guide.
+You can find the instructions on how to run the Hello World AI agent in the [quick start](https://stack.olas.network/open-autonomy/guides/quick_start/) guide.
 
-If you have [set up the framework](https://docs.autonolas.network/open-autonomy/guides/set_up/#set-up-the-framework), you can fetch the source code of the Hello World agent:
+If you have [set up the framework](https://stack.olas.network/open-autonomy/guides/set_up/#set-up-the-framework), you can fetch the source code of the Hello World AI agent:
 
 ```bash
 autonomy fetch valory/hello_world:0.1.0:<hash> --alias hello_world_agent
 ```
 
-and the Hello World service:
+and the Hello World AI agent:
 
 ```bash
 autonomy fetch valory/hello_world:0.1.0:<hash> --service --alias hello_world_service
@@ -33,75 +33,75 @@ autonomy fetch valory/hello_world:0.1.0:<hash> --service --alias hello_world_ser
 
 ## Details of the demo
 
-The functionality of the service is extremely simple. Namely, each agent will output at different times a `HELLO_WORLD!` message on their local console. The execution timeline is divided into *periods*, and within each period, only a nominated agent (keeper) will print the `HELLO_WORLD!` message. The other agents will just print a neutral face `:|`.
+The functionality of the AI agent is extremely simple. Namely, each agent instance will output at different times a `HELLO_WORLD!` message on their local console. The execution timeline is divided into *periods*, and within each period, only a nominated agent instance(keeper) will print the `HELLO_WORLD!` message. The other agent instances will just print a neutral face `:|`.
 
 !!! info
 
-    In the context of agent services, you can think of a *period* as an interval where the service executes an iteration of its intended functionality (e.g., checking some price on a market, execute an investment strategy, or in this demo, printing a message).
+    In the context of AI agent, you can think of a *period* as an interval where the service executes an iteration of its intended functionality (e.g., checking some price on a market, execute an investment strategy, or in this demo, printing a message).
 
-Recall that agents synchronize their state using the *consensus gadget*. For clarity, we will simplify the consensus gadget infrastructure (the consensus gadget nodes plus the consensus gadget network) in a single green box.
+Recall that agent instances synchronize their state using the *consensus gadget*. For clarity, we will simplify the consensus gadget infrastructure (the consensus gadget nodes plus the consensus gadget network) in a single green box.
 
 <figure markdown>
 ![](./images/hello_world_demo_architecture_simplified.svg){align="center"}
-<figcaption>A simplified view of the Hello world service architecture</figcaption>
+<figcaption>A simplified view of the Hello world AI agent architecture</figcaption>
 </figure>
 
 !!! warning "Important"
 
-    Every agent service is connected to the *consensus gadget* through its *consensus gadget node*:
+    Every AI agent is connected to the *consensus gadget* through its *consensus gadget node*:
 
-    * The consensus gadget is the component that makes possible for the agents to synchronise state data. This allows them to, e.g. reach agreement on certain actions or reconcile information.
+    * The consensus gadget is the component that makes possible for the agent instances to synchronise state data. This allows them to, e.g. reach agreement on certain actions or reconcile information.
 
-    * Anything happening at the consensus network level is completely abstracted away so that developers can see it as a given functionality. An application run by the agent service can be thought and developed as a single "virtual" application, and the framework will take care of replicating it.
+    * Anything happening at the consensus network level is completely abstracted away so that developers can see it as a given functionality. An application run by the AI agent can be thought and developed as a single "virtual" application, and the framework will take care of replicating it.
 
     * Currently, the consensus gadget is implemented using [Tendermint](https://tendermint.com/).
 
-This is what the service execution looks like:
+This is what the AI agent execution looks like:
 
 <figure markdown>
 ![](./images/hello_world_action.svg)
-<figcaption>Hello World service in action</figcaption>
+<figcaption>Hello World AI agent in action</figcaption>
 </figure>
 
 The main questions that we try to answer in the sections below are:
 
-* What are the main components of the {{open_autonomy}} framework to implement an agent service?
+* What are the main components of the {{open_autonomy}} framework to implement an AI agent?
 * How do these components work?
 
-### The FSM of the service
+### The FSM of the AI agent
 
-As discussed in the [overview of the development process](https://docs.autonolas.network/open-autonomy/guides/overview_of_the_development_process), the first steps when designing an agent service are [draft the service idea and define the FSM specification](#) that represents its business logic. This is a representation of the Hello World service FSM:
+As discussed in the [overview of the development process](https://stack.olas.network/open-autonomy/guides/overview_of_the_development_process/), the first steps when designing an AI agent are [draft the AI agent idea and define the FSM specification](https://stack.olas.network/open-autonomy/guides/draft_service_idea_and_define_fsm_specification/) that represents its business logic. This is a representation of the Hello World AI agent FSM:
 
 <figure markdown>
 ![](./images/hello_world_fsm.svg)
-<figcaption>Diagram of individual operations of the Hello World service</figcaption>
+<figcaption>Diagram of individual operations of the Hello World AI agent</figcaption>
 </figure>
 
-These are the states of the service:
+These are the states of the AI agent:
 
-* **Registration.** This is a preliminary state where each agent commits to participate actively in the service.
-* **CollectRandomness.** All agents connect to the [DRAND](https://drand.love) remote service and retrieve the latest published random value.
-* **SelectKeeper.** Using that random value as seed, the agents nominate randomly an agent (keeper) to execute the service action.
-* **PrintMessage.** The keeper executes the main action of the service: prints the `HELLO_WORLD!` message.
-* **ResetAndPause.** A state where agents wait a bit before re-starting again the main cycle of the service.
+* **Registration.** This is a preliminary state where each agent instance commits to participate actively in the AI agent.
+* **CollectRandomness.** All agent instances connect to the [DRAND](https://drand.love) remote service and retrieve the latest published random value.
+* **SelectKeeper.** Using that random value as seed, the agent instances nominate randomly an instance (keeper) to execute the AI agent action.
+* **PrintMessage.** The keeper executes the main action of the AI agent: prints the `HELLO_WORLD!` message.
+* **ResetAndPause.** A state where agent instances wait a bit before re-starting again the main cycle of the AI agent.
 
 And these the possible events (not all events can occur at every state):
 
 * **DONE.** The state has successfully completed its intended purpose.
-* **NO_MAJORITY.** There is no majority (more than 2/3) of agents that agree in the outcome of the state.
-* **TIMEOUT.** Not all agents responded within a specified amount of time.
+* **NO_MAJORITY.** There is no majority (more than 2/3) of agent instances that agree in the outcome of the state.
+* **TIMEOUT.** Not all agent instances responded within a specified amount of time.
 
-You can see above how the service transits from one state to another given the event occurred at each one. The synchronized state enforced by the consensus gadget means that **all the agents have the same view of the service FSM**, and **all the agents execute the same transitions**. This is one of the key concepts of the {{open_autonomy}} framework.
+You can see above how the AI agent transits from one state to another given the event occurred at each one. The synchronized state enforced by the consensus gadget means that **all the agent instances have the same view of the AI agent FSM**, and **all the instances execute the same transitions**. This is one of the key concepts of the {{open_autonomy}} framework.
 
 !!! warning "A note on determinism"
 
-    One of the key points in an agent service is determinism. It is very important that all the agents execute deterministic actions at each step, otherwise it will be impossible to synchronize their shared state.
+    One of the key points in an AI agent is determinism. It is very important that all the agent instances execute deterministic actions at each step, otherwise it will be impossible to synchronize their shared state.
 
-    For example, if the service needs to execute some random action, all agents must retrieve the random seed from a common source, in this case, the [DRAND](https://drand.love) service.
+    For example, if the AI agent needs to execute some random action, all agent instances must retrieve the random seed from a common source, in this case, the [DRAND](https://drand.love) service.
 
-Given the description of the service, it is immediate to obtain the FSM specification file.
+Given the description of the AI agent, it is immediate to obtain the FSM specification file.
 
-???+ example "The Hello World service `fsm_specification.yaml` file"
+???+ example "The Hello World AI agent `fsm_specification.yaml` file"
 
     ```yaml title="fsm_specification.yaml"
     alphabet_in:
@@ -135,43 +135,43 @@ Given the description of the service, it is immediate to obtain the FSM specific
         (SelectKeeperRound, ROUND_TIMEOUT): RegistrationRound
     ```
 
-### The {{fsm_app}} of the service
+### The {{fsm_app}} of the AI agent
 
-Each agent is composed of a number of components, namely, [connections](https://open-aea.docs.autonolas.tech/connection/), [protocols](https://open-aea.docs.autonolas.tech/protocol/), [contracts](https://open-aea.docs.autonolas.tech/contract/) and [skills](https://open-aea.docs.autonolas.tech/skill/). In order to become part of an agent service, the agent requires a special skill: the {{fsm_app}}. The **{{fsm_app}} skill** is the component that processes events,transits the states of the service FSM, and executes the actions of the service.
+Each agent blueprint is composed of a number of components, namely, [connections](https://stack.olas.network/open-aea/connection/), [protocols](https://stack.olas.network/open-aea/protocol/), [contracts](https://stack.olas.network/open-aea/contract/) and [skills](https://stack.olas.network/open-aea/skill/). In order to become part of an AI agent, the agent blueprint requires a special skill: the {{fsm_app}}. The **{{fsm_app}} skill** is the component that processes events,transits the states of the AI agent FSM, and executes the actions of the AI agent.
 
 <figure markdown>
 ![](./images/hello_world_zoom_agent.svg)
-<figcaption>Zoom on a Hello World service agent.</figcaption>
+<figcaption>Zoom on a Hello World AI agent.</figcaption>
 </figure>
 
 The {{fsm_app}} is a complex component that consists of a number of classes. Below we list the main ones.
 
-For each state of the service FSM:
+For each state of the AI agent FSM:
 
-* A [`Behaviour`](https://docs.autonolas.network/open-autonomy/key_concepts/abci_app_async_behaviour): The class that executes the proactive action at each state. For example, cast a vote for a keeper, print a message on screen, send a transaction on a blockchain, etc.
-* A [`Payload`](https://docs.autonolas.network/open-autonomy/key_concepts/abci_app_async_behaviour): The message exchanged between agents in the state to indicate completion of the action. For example, a message containing what keeper the agent is voting for.
-* A [`Round`](https://docs.autonolas.network/open-autonomy/key_concepts/abci_app_abstract_round): The class that processes the input from the consensus gadget and outputs the appropriate events to make the next transition. For example, output the event DONE when all agents have cast their vote for a keeper.
+* A [`Behaviour`](https://stack.olas.network/open-autonomy/key_concepts/abci_app_async_behaviour/): The class that executes the proactive action at each state. For example, cast a vote for a keeper, print a message on screen, send a transaction on a blockchain, etc.
+* A [`Payload`](https://stack.olas.network/open-autonomy/key_concepts/abci_app_async_behaviour/): The message exchanged between agent instances in the state to indicate completion of the action. For example, a message containing what keeper the agent instance is voting for.
+* A [`Round`](https://stack.olas.network/open-autonomy/key_concepts/abci_app_abstract_round/): The class that processes the input from the consensus gadget and outputs the appropriate events to make the next transition. For example, output the event DONE when all agent bluprint instances have cast they vote for a keeper.
 
 Additionally, the following two classes:
 
-* [`AbciApp`](https://docs.autonolas.network/open-autonomy/key_concepts/abci_app_class): The class that defines the FSM itself and the transitions between states according to the FSM.
-* [`RoundBehaviour`](https://docs.autonolas.network/open-autonomy/key_concepts/abci_app_abstract_round_behaviour): The main class of the {{fsm_app}} skill, which aggregates the `AbciApp` and establishes a one-to-one relationship between the rounds and behaviours of each state.
+* [`AbciApp`](https://stack.olas.network/open-autonomy/key_concepts/abci_app_class/): The class that defines the FSM itself and the transitions between states according to the FSM.
+* [`RoundBehaviour`](https://stack.olas.network/open-autonomy/key_concepts/abci_app_abstract_round/_behaviour): The main class of the {{fsm_app}} skill, which aggregates the `AbciApp` and establishes a one-to-one relationship between the rounds and behaviours of each state.
 
-In summary, the Hello World service {{fsm_app}} requires 5 `Behaviours`, 5 `Payloads`, 5 `Rounds`, 1 `AbciApp` and 1 `RoundBehaviour`.
+In summary, the Hello World AI agent {{fsm_app}} requires 5 `Behaviours`, 5 `Payloads`, 5 `Rounds`, 1 `AbciApp` and 1 `RoundBehaviour`.
 
-!!! info "Canonical agents vs agent instances"
+!!! info "Agent Blueprints vs Agent instances"
 
-    All agents in a service are implemented by the same codebase. We call such codebase a _canonical agent_, and we call each of the actual instances an _agent instance_. We often use _agent_ for short when there is no risk of confusion and it is clear from the context which of the two terms we are referring to.
+    All agent instances in an AI agent are implemented by the same codebase. We call such codebase an _agent blueprint_, and we call each of the actual instances an _agent instance_. We often use _agent instance_ for short when there is no risk of confusion and it is clear from the context which of the two terms we are referring to.
 
-    Each agent instance in a service can be parameterized with their own set of keys, addresses and other required attributes.
+    Each agent instance in an AI agent can be parameterized with their own set of keys, addresses and other required attributes.
 
 ### How the {{fsm_app}} works
 
-Let us focus on what happens inside the {{fsm_app}} of an agent when the service is located in the SelectKeeper state and it transitions to the PrintMessage state.
+Let us focus on what happens inside the {{fsm_app}} of an agent instance when the AI agent is located in the SelectKeeper state and it transitions to the PrintMessage state.
 
 1. **Execute the action and prepare the payload.** The `SelectKeeperBehaviour` is in charge of two tasks:
 
-      * Execute the intended action, that is, determine what agent will be voted for as the new keeper. The choice is made deterministically, based on the randomness retrieved from [DRAND](https://drand.love).
+      * Execute the intended action, that is, determine which agent instance will be voted for as the new keeper. The choice is made deterministically, based on the randomness retrieved from [DRAND](https://drand.love).
       * Prepares the `SelectKeeperPayload`, which contains its selection.
 
     ![](./images/hello_world_sequence_1.svg)
@@ -180,14 +180,14 @@ Let us focus on what happens inside the {{fsm_app}} of an agent when the service
 
     ![](./images/hello_world_sequence_2.svg)
 
-3. **Reach consensus.** The consensus gadget reads all the agents' outputs, and ensures that all agents have the same consistent view. The gadget takes the responsibility of executing the consensus algorithm, which is abstracted away to the developer. The consensus gadget uses a short-lived blockchain to execute the consensus algorithm.
+3. **Reach consensus.** The consensus gadget reads all the agent instances' outputs, and ensures that all instances have the same consistent view. The gadget takes the responsibility of executing the consensus algorithm, which is abstracted away to the developer. The consensus gadget uses a short-lived blockchain to execute the consensus algorithm.
 
     ![](./images/hello_world_sequence_3.svg)
 
     !!! note
-        "Reaching consensus" does not mean that the consensus gadget ensures that all the agents send the same payload. Rather, it means that all the agents have a _consistent view_ on what payload was sent by each of them. In this particular case, however all agents cast the same vote.
+        "Reaching consensus" does not mean that the consensus gadget ensures that all the agent instance send the same payload. Rather, it means that all the agent instance have a _consistent view_ on what payload was sent by each of them. In this particular case, however all agent instance cast the same vote.
 
-4. **Callback to the {{fsm_app}}.** Once the consensus phase is finished, the `SelectKeeperRound` receives a callback and processes the outputs. Based on that, it casts an event. In this case, if strictly more than $2/3$ of the agents voted for a certain keeper, it casts the event `DONE`.
+4. **Callback to the {{fsm_app}}.** Once the consensus phase is finished, the `SelectKeeperRound` receives a callback and processes the outputs. Based on that, it casts an event. In this case, if strictly more than $2/3$ of the agent instance voted for a certain keeper, it casts the event `DONE`.
 
     ![](./images/hello_world_sequence_4.svg)
 
@@ -201,49 +201,49 @@ The executions of further state transitions can be easily mapped with what has b
 
     Following the same steps as above, this is what would happen:
 
-    1. The `PrintMessageBehaviour`, executes the main functionality. For the chosen keeper, it will be printing the `HELLO_WORLD` message. The rest of the agents simply print a neutral face.
+    1. The `PrintMessageBehaviour`, executes the main functionality. For the chosen keeper, it will be printing the `HELLO_WORLD` message. The rest of the agent instance simply print a neutral face.
         <figure markdown>
         ![](./images/hello_world_result.svg)
-        <figcaption>Result of the execution the second period of the Hello World service</figcaption>
+        <figcaption>Result of the execution the second period of the Hello World AI agent</figcaption>
         </figure>
 
     2.   The `PrintMessageBehaviour` sends a `PrintMessagePayload` to the consensus gadget, indicating what was the message it printed by each agent.
-    3.   The consensus gadget executes the consensus protocol ensuring a consistent view for all the agents.
-    4.   The `PrintMessageRound` receives a callback, and after checking that all agents have responded it will produce the `DONE` event.
+    3.   The consensus gadget executes the consensus protocol ensuring a consistent view for all the agent instance.
+    4.   The `PrintMessageRound` receives a callback, and after checking that all agent instance have responded it will produce the `DONE` event.
     5.   The `AbciApp` processes the event `DONE`, and moves to the next state, ResetAndPause.
 
 !!! note
 
-    Observe that whereas in the SelectKeeper state we expect that all agents output the same payload to the consensus gadget (the same keeper vote), in the PrintMessage state it is admissible that the agents send different values, because they print different things on their console.
+    Observe that whereas in the SelectKeeper state we expect that all agent instance output the same payload to the consensus gadget (the same keeper vote), in the PrintMessage state it is admissible that the instantce send different values, because they print different things on their console.
 
     Other states might have different waiting conditions, for instance
 
-    * wait until all agents respond with a (possibly) different value, or
-    * wait until more than a threshold of agents respond with the same value.
+    * wait until all agent instance respond with a (possibly) different value, or
+    * wait until more than a threshold of instances respond with the same value.
 
     When the waiting condition is not met during a certain time interval, a special timeout event is generated by the `Round`, and the developer is in charge of defining how the FSM will transit in that case. You can see some of these unexpected events in the FSM diagram above.
 
 ### Bird's eye view
-As a summary, find below an image which shows the main components of the agent and the skill related to the Hello World service presented in this overview. Of course, this is by no means the complete picture of what is inside an agent, but it should give a good intuition of what are the main elements that play a role in any agent service and how they interact.
+As a summary, find below an image which shows the main components of the agent blueprint and the skill related to the Hello World AI agent presented in this overview. Of course, this is by no means the complete picture of what is inside an agent blueprint, but it should give a good intuition of what are the main elements that play a role in any AI agent and how they interact.
 
 <figure markdown>
 ![](./images/hello_world_agent_internal.svg)
-<figcaption>Main components of an agent that play a role in an agent service. Red arrows indicate a high-level flow of messages when the agent is in the SelectKeeper state.</figcaption>
+<figcaption>Main components of an agent instance that play a role in an AI agent. Red arrows indicate a high-level flow of messages when the agent instance is in the SelectKeeper state.</figcaption>
 </figure>
 
-### Coding the Hello World service: a primer
+### Coding the Hello World AI agent: a primer
 
-As detailed in the [overview of the development process](https://docs.autonolas.network/open-autonomy/guides/overview_of_the_development_process), in order to create a service, you must:
+As detailed in the [overview of the development process](https://stack.olas.network/open-autonomy/guides/overview_of_the_development_process/), in order to create an AI agent, you must:
 
 * code the {{fsm_app}} skill,
-* define the agent, and
-* define the service.
+* define the agent blueprint, and
+* define the AI agent.
 
 We will explore this source code in the sections below, paying attention on the main parts that you should take into account.
 
 #### Exploring the {{fsm_app}} skill code
 
-Take a look at the structure of the {{fsm_app}} skill of the Hello World service (called `hello_world_abci`):
+Take a look at the structure of the {{fsm_app}} skill of the Hello World agent blueprint (called `hello_world_abci`):
 
 ```
 ./hello_world_agent/vendor/valory/skills/hello_world_abci/
@@ -261,7 +261,7 @@ Take a look at the structure of the {{fsm_app}} skill of the Hello World service
 └── tests/
 ```
 
-Note that the easiest way to start building a new {{fsm_app}} is by [using the {{fsm_app}} scaffold tool](https://docs.autonolas.network/open-autonomy/guides/code_fsm_app_skill), because it already populates many of these files. The most important files you should look at are:
+Note that the easiest way to start building a new {{fsm_app}} is by [using the {{fsm_app}} scaffold tool](https://stack.olas.network/open-autonomy/guides/code_fsm_app_skill/), because it already populates many of these files. The most important files you should look at are:
 
 * **`behaviours.py`**: This file defines the `Behaviours`, which encode the proactive actions occurring at each state of the FSM. Each behaviour is one-to-one associated to a `Round`. It also contains the `HelloWorldRoundBehaviour` class, which can be thought as the "main" class for the skill behaviour.
 
@@ -269,8 +269,8 @@ Note that the easiest way to start building a new {{fsm_app}} is by [using the {
 
     1. Set the `matching_round` attribute to the corresponding `Round` class.
     2. Define the action executed in the state inside the method `async_act()`.
-    3. Prepare the `Payload` associated with this state. The payload can be anything that other agents might find useful for the action in this or future states.
-    4. Send the `Payload`, which the consensus gadget will be in charge of synchronizing with all the agents.
+    3. Prepare the `Payload` associated with this state. The payload can be anything that other agent instance might find useful for the action in this or future states.
+    4. Send the `Payload`, which the consensus gadget will be in charge of synchronizing with all the agent instances.
     5. Wait until the consensus gadget finishes its work, and mark the state `set_done()`.
 
     The last three steps above are common for all the `Behaviours`.
@@ -319,7 +319,7 @@ Note that the easiest way to start building a new {{fsm_app}} is by [using the {
                 Do the action.
 
                 Steps:
-                - Determine if this agent is the current keeper agent.
+                - Determine if this agent instance is the current keeper agent instance.
                 - Print the appropriate to the local console.
                 - Send the transaction with the printed message and wait for it to be mined.
                 - Wait until ABCI application transitions to the next round.
@@ -347,7 +347,7 @@ Note that the easiest way to start building a new {{fsm_app}} is by [using the {
                 self.set_done()
         ```
 
-    Once all the `Behaviours` are defined, you can define the `HelloWorldRoundBehaviour` class. This class follows a quite standard structure in all agent services, and the reader can easily infer what is it from the source code.
+    Once all the `Behaviours` are defined, you can define the `HelloWorldRoundBehaviour` class. This class follows a quite standard structure in all AI agents, and the reader can easily infer what is it from the source code.
 
     ???- example "The `HelloWorldRoundBehaviour` class"
 
@@ -378,7 +378,7 @@ Note that the easiest way to start building a new {{fsm_app}} is by [using the {
             message: str
         ```
 
-* **`rounds.py`**: This file contains the implementation of the rounds associated to each state and the shared `SynchronizedData` class (the class that stores the service shared state). It also contains the declaration of the FSM events, and the `HelloWorldAbciApp`, which defines the transition function of the FSM.
+* **`rounds.py`**: This file contains the implementation of the rounds associated to each state and the shared `SynchronizedData` class (the class that stores the AI agent shared state). It also contains the declaration of the FSM events, and the `HelloWorldAbciApp`, which defines the transition function of the FSM.
 
     Each round must:
 
@@ -436,7 +436,7 @@ Note that the easiest way to start building a new {{fsm_app}} is by [using the {
         <figcaption>Hierarchy of the PrintMessageRound class (some methods and fields are omitted)</figcaption>
         </figure>
 
-        The `HelloWorldABCIAbstractRound` is a convenience class defined in the same file. The class `CollectDifferentUntilAllRound` is a helper class for rounds that expect that each agent sends a different message. In this case, the message to be sent is the agent printed by each agent, which will be obviously different for each agent (one of them will be the `HELLO_WORLD!` message, and the others will be empty messages).
+        The `HelloWorldABCIAbstractRound` is a convenience class defined in the same file. The class `CollectDifferentUntilAllRound` is a helper class for rounds that expect that each agent instance sends a different message. In this case, the message to be sent is the agent instance printed by each instance, which will be obviously different for each instance (one of them will be the `HELLO_WORLD!` message, and the others will be empty messages).
 
         ```python
         class PrintMessageRound(CollectDifferentUntilAllRound, HelloWorldABCIAbstractRound):
@@ -463,7 +463,7 @@ Note that the easiest way to start building a new {{fsm_app}} is by [using the {
 
         If the successful condition occurs, the `end_block()` method returns the appropriate event (`DONE`) so that the `AbciApp` can process and transit to the next round.
 
-        Observe that the `RegistrationRound` is very similar to the `PrintMessageRound`, as it simply has to collect the different addresses that each agent sends. On the other hand, the classes `CollectRandomnessRound` and  `SelectKeeperRound` just require to define some parent classes attributes, as they execute fairly standard operations already available in the framework.
+        Observe that the `RegistrationRound` is very similar to the `PrintMessageRound`, as it simply has to collect the different addresses that each agent instance sends. On the other hand, the classes `CollectRandomnessRound` and  `SelectKeeperRound` just require to define some parent classes attributes, as they execute fairly standard operations already available in the framework.
 
     After having defined all the `Rounds`, the `HelloWorldAbciApp` does not have much mystery. It simply defines the transitions from one state to another in the FSM, arranged as Python dictionaries. For example,
 
@@ -480,14 +480,14 @@ Note that the easiest way to start building a new {{fsm_app}} is by [using the {
 Whereas these are the main files to take into account, there are other files that are also required, and you can take a look:
 
 * **`skill.yaml`**: This is the skill specification file. It defines the sub-components (e.g. protocols, connections) required by the skill, as well as a number of configuration parameters.
-* **`handlers.py`**: Defines the `Handlers` (implementing reactive actions) used by the skill. It is mandatory that the skill associated to an agent service implements a handler inherited from the `ABCIRoundHandler`. Other handlers are required according to the actions that the skill is performing (e.g., interacting with an HTTP server). As you can see by exploring the file, little coding is expected unless you need to implement a custom protocol.
+* **`handlers.py`**: Defines the `Handlers` (implementing reactive actions) used by the skill. It is mandatory that the skill associated to an agent blueprint implements a handler inherited from the `ABCIRoundHandler`. Other handlers are required according to the actions that the skill is performing (e.g., interacting with an HTTP server). As you can see by exploring the file, little coding is expected unless you need to implement a custom protocol.
 * **`dialogues.py`**: It defines the dialogues associated to the protocols described in the `skill.yaml` configuration file. Again, not much coding is expected in most cases.
 * **`models.py`**: It defines the models of the skill, which usually consist of the `SharedState` and the configuration parameters `Params` classes. The classes defined here are linked with the contents in the section `models` in the file `skill.yaml`.
-* **`fsm_specification.yaml`**: The {{fsm_app}} specification file. It is used for checking the consistency of the implementation, and it can be used to verify the implementation or to [scaffold the {{fsm_app}}](https://docs.autonolas.network/open-autonomy/guides/code_fsm_app_skill) providing an initial structure.
+* **`fsm_specification.yaml`**: The {{fsm_app}} specification file. It is used for checking the consistency of the implementation, and it can be used to verify the implementation or to [scaffold the {{fsm_app}}](https://stack.olas.network/open-autonomy/guides/code_fsm_app_skill/) providing an initial structure.
 
-#### Exploring the agent definition code
+#### Exploring the agent blueprint definition code
 
-The agent configuration file `aea-config.yaml` is located in the root folder of the agent:
+The agent blueprint configuration file `aea-config.yaml` is located in the root folder of the agent:
 
 ```
 ./hello_world_agent/
@@ -499,7 +499,7 @@ The agent configuration file `aea-config.yaml` is located in the root folder of 
 └── vendor/
 ```
 
-Agents are defined through the {{open_aea}} library as YAML files, which specify what components the agent made of ([connections](https://open-aea.docs.autonolas.tech/connection/), [protocols](https://open-aea.docs.autonolas.tech/protocol/), [contracts](https://open-aea.docs.autonolas.tech/contract/) and [skills](https://open-aea.docs.autonolas.tech/skill/)). Recall that an agent requires the {{fsm_app}} skill to work in a service.
+Agent blueprints are defined through the {{open_aea}} library as YAML files, which specify what components the agent blueprint made of ([connections](https://stack.olas.network/open-aea/connection/), [protocols](https://stack.olas.network/open-aea/protocol/), [contracts](https://stack.olas.network/open-aea/contract/) and [skills](https://stack.olas.network/open-aea/skill/)). Recall that an agent blueprint requires the {{fsm_app}} skill to work in an AI agent.
 
 This is an excerpt of the `aea-config.yaml` file:
 
@@ -524,16 +524,16 @@ skills:
 # (...)
 ```
 
-It is mandatory that service agents include some of mandatory components: the `abci` connection, the `abci` protocol, the `abstract_abci` skill and the `abstract_round_abci` skill.
+It is mandatory that agent blueprints include some of mandatory components: the `abci` connection, the `abci` protocol, the `abstract_abci` skill and the `abstract_round_abci` skill.
 
-Additionally, the agent can use other connections, protocols or skills, depending of its particular needs. In the example, the `http_client` connection and the `http` protocol allows the agent to interact with HTTP servers (although we are not using it in this service). Similarly, you can add the `ledger` connection and the `ledger_api` protocol in case the agent needs to interact with a blockchain.
+Additionally, the agent blueprint can use other connections, protocols or skills, depending of its particular needs. In the example, the `http_client` connection and the `http` protocol allows the agent instances to interact with HTTP servers (although we are not using it in this AI agent). Similarly, you can add the `ledger` connection and the `ledger_api` protocol in case the agent instance needs to interact with a blockchain.
 It obviously contains the `hello_world_abci` skill, which is the {{fsm_app}} skill discussed above.
 
-Note that although it is possible to develop your own protocols and connections, the {{open_aea}} framework provides a number of typical ones which can be reused. Therefore, it is usual that the developer focuses most of its programming efforts in coding the particular skill(s) for their new agent.
+Note that although it is possible to develop your own protocols and connections, the {{open_aea}} framework provides a number of typical ones which can be reused. Therefore, it is usual that the developer focuses most of its programming efforts in coding the particular skill(s) for their new agent blueprint.
 
-#### Exploring the service definition code
+#### Exploring the AI agent definition code
 
-The service configuration file `service.yaml` is located in the root folder of the service:
+The AI agent configuration file `service.yaml` is located in the root folder of the AI agent:
 
 ```
 ./hello_world_service/
@@ -542,19 +542,18 @@ The service configuration file `service.yaml` is located in the root folder of t
 └── service.yaml
 ```
 
-You can read the [dedicated section](https://docs.autonolas.network/open-autonomy/configure_service/service_configuration_file) to understand the structure and configuration of the `service.yaml` file.
+You can read the [dedicated section](https://stack.olas.network/open-autonomy/configure_service/service_configuration_file/) to understand the structure and configuration of the `service.yaml` file.
 
 ## Conclusion and further reading
 
-Even though printing `HELLO_WORLD!` on a local console is far from being an exciting functionality, the Hello World service shows a number of non-trivial elements that are key components in many agent services:
+Even though printing `HELLO_WORLD!` on a local console is far from being an exciting functionality, the Hello World AI agent shows a number of non-trivial elements that are key components in many agent blueprints:
 
-* The service defines a sequence of individual, well-defined actions, whose execution in the appropriate order achieves the intended functionality.
-* Agents have to interact with each other to execute each of those actions, and reach a consensus on a number of decisions at certain moments (e.g., which is the keeper agent that prints the message in each period).
-* Agents execute actions on their own. In this simple example it just consists of printing a local message.
-* Agents have to use a shared, global store for persistent data (e.g., which was the last agent that printed the message).
-* Finally, the service can progress even if some agent is faulty or malicious (up to a certain threshold of malicious agents).
+* The agent blueprint defines a sequence of individual, well-defined actions, whose execution in the appropriate order achieves the intended functionality.
+* Agent instance have to interact with each other to execute each of those actions, and reach a consensus on a number of decisions at certain moments (e.g., which is the keeper instance that prints the message in each period).
+* Agent instance execute actions on their own. In this simple example it just consists of printing a local message.
+* Agent instance have to use a shared, global store for persistent data (e.g., which was the last instance that printed the message).
+* Finally, the AI agent can progress even if some agent instance is faulty or malicious (up to a certain threshold of malicious instances).
 
-In this toy example we are not verifying that the keeper behaves honestly: there is no way for the other agents to verify its console. However, in a real service that implements some critical operation (e.g., like sending a transaction to a blockchain) further verification and security mechanisms have to be put in place.
+In this toy example we are not verifying that the keeper behaves honestly: there is no way for the other agent instance to verify its console. However, in a real AI agent that implements some critical operation (e.g., like sending a transaction to a blockchain) further verification and security mechanisms have to be put in place.
 
-This walk-through, together with the [overview of the development process](https://docs.autonolas.network/open-autonomy/guides/overview_of_the_development_process) should give you some confidence to start creating your first service. Obviously, there are more elements in the {{open_autonomy}} framework that facilitate building complex applications by enabling to interact with blockchains and other networks. We refer the reader to the more advanced sections of the documentation (e.g., key concepts) where we explore in detail the components of the stack.
-
+This walk-through, together with the [overview of the development process](https://stack.olas.network/open-autonomy/guides/overview_of_the_development_process/) should give you some confidence to start creating your first AI agent. Obviously, there are more elements in the {{open_autonomy}} framework that facilitate building complex applications by enabling to interact with blockchains and other networks. We refer the reader to the more advanced sections of the documentation (e.g., key concepts) where we explore in detail the components of the stack.

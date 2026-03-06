@@ -17,7 +17,7 @@ application for a simple demonstration.
 
 * `SelectKeeperBehaviour`
 
-   Select the keeper agent.
+   Select the keeper agent instance.
 
 * `PrintMessageBehaviour`
 

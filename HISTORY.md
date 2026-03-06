@@ -1,4 +1,4 @@
-# Release History - Hello World agent service
+# Release History - Hello World AI agent
 
 ## v0.12.1.post4 (2023-10-06)
 

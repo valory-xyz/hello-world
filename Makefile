@@ -85,9 +85,8 @@ new_env: clean
 	then\
 		pipenv --rm;\
 		pipenv --clear;\
-		pipenv --python 3.10;\
+		pipenv --python 3.11;\
 		pipenv install --dev --skip-lock;\
-		pipenv run pip install -e .[all];\
 		echo "Enter virtual environment with all development dependencies now: 'pipenv shell'.";\
 	else\
 		echo "In a virtual environment! Exit first: 'exit'.";\
@@ -112,3 +111,12 @@ protolint_install_darwin:
 # TODO: use precompiled binary
 protolint_install_win:
 	powershell -command '$$env:GO111MODULE="on"; go install github.com/yoheimuta/protolint/cmd/protolint@v0.27.0'
+
+.PHONY: run-agent
+run-agent:
+	mkdir -p ./logs && \
+	bash -c 'TIMESTAMP=$$(date +%d-%m-%y_%H-%M); \
+	LOG_FILE="./logs/agent_log_$$TIMESTAMP.log"; \
+	LATEST_LOG_FILE="./logs/agent_log_latest.log"; \
+	echo "Running agent and logging to $$LOG_FILE"; \
+	bash run_agent.sh 2>&1 | tee $$LOG_FILE $$LATEST_LOG_FILE'
