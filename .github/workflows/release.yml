@@ -7,19 +7,19 @@ on:
 jobs:
   publish-packages:
     name: Push Packages
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-24.04
     strategy:
       matrix:
-        os: [ubuntu-latest]
+        os: [ubuntu-24.04]
         python-version: ["3.10"]
     steps:
-      - uses: actions/checkout@master
-      - uses: actions/setup-python@v3
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
         with:
           python-version: ${{ matrix.python-versions }}
       - uses: addnab/docker-run-action@v3
         with:
-          image: valory/open-autonomy-user:latest
+          image: valory/open-autonomy-user:0.21.13
           options: -v ${{ github.workspace }}:/work
           run: |
             echo "Pushing Packages"
@@ -35,17 +35,17 @@ jobs:
       - "publish-packages"
     strategy:
       matrix:
-        os: [ubuntu-latest]
+        os: [ubuntu-24.04]
         python-version: ["3.10"]
     env:
       DOCKER_USER: ${{secrets.DOCKER_USER}}
       DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v6
       - name: Set up tag and vars
         uses: addnab/docker-run-action@v3
         with:
-          image: valory/open-autonomy-user:latest
+          image: valory/open-autonomy-user:0.21.13
           options: -v ${{ github.workspace }}:/work
           run: |
             echo "Setting Tag Images"
@@ -68,7 +68,7 @@ jobs:
       - uses: addnab/docker-run-action@v3
         name: Build Images
         with:
-          image: valory/open-autonomy-user:latest
+          image: valory/open-autonomy-user:0.21.13
           options: -v ${{ github.workspace }}:/work
           shell: bash
           run: |
