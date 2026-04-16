@@ -43,7 +43,7 @@ pytz = "==2022.2.1"
 requests = "<2.33.0,>=2.28.1"
 texttable = "==1.6.7"
 toml = "==0.10.2"
-tomte = {version = "==0.6.1", extras = ["tests", "cli"]}
+tomte = {version = "==0.6.5", extras = ["tests", "cli"]}
 typing_extensions = ">=3.10.0.2"
 valory-docker-compose = "==1.29.3"
 

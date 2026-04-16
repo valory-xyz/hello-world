@@ -68,10 +68,10 @@ jobs:
         sudo apt-get update --fix-missing
         sudo apt-get autoremove
         sudo apt-get autoclean
-        pip install tomte[tox,cli]==0.6.1
+        pip install tomte[tox,cli]==0.6.5
         pip install --user --upgrade setuptools
     - name: Check copyright headers
-      run: tomte format-copyright --author valory --author fetchai
+      run: tomte format-copyright --author "Valory AG" --author "Fetch.AI Limited"
     - name: License compatibility check
       run: tox -e liccheck
     # - name: Check docs
@@ -103,7 +103,7 @@ jobs:
         sudo apt-get update --fix-missing
         sudo apt-get autoremove
         sudo apt-get autoclean
-        pip install tomte[tox]==0.6.1
+        pip install tomte[tox]==0.6.5
         pip install --user --upgrade setuptools
         # install Protobuf compiler
         wget https://github.com/protocolbuffers/protobuf/releases/download/v3.19.4/protoc-3.19.4-linux-x86_64.zip
@@ -191,7 +191,7 @@ jobs:
           sudo apt-get update --fix-missing
           sudo apt-get autoremove
           sudo apt-get autoclean
-          pip install tomte[tox]==0.6.1
+          pip install tomte[tox]==0.6.5
           pip install --user --upgrade setuptools
 
           # install Protobuf compiler
@@ -227,7 +227,7 @@ jobs:
       - if: matrix.os == 'macos-15'
         name: Install dependencies (macos-15)
         run: |
-          pip install tomte[tox]==0.6.1
+          pip install tomte[tox]==0.6.5
           brew install gcc
 
           # protoc: use brew on arm64 (no osx-aarch_64 in 3.19.x), manual download on x86_64
@@ -280,7 +280,7 @@ jobs:
           choco install make -y
           # to check make was installed
           make --version
-          pip install tomte[tox]==0.6.1
+          pip install tomte[tox]==0.6.5
           # wget https://github.com/protocolbuffers/protobuf/releases/download/v24.3/protoc-24.3-win64.zip
           # unzip protoc-24.3-win64.zip -d protoc
           # sudo mv protoc/bin/protoc /usr/local/bin/protoc
@@ -345,7 +345,7 @@ jobs:
           sudo apt-get update --fix-missing
           sudo apt-get autoremove
           sudo apt-get autoclean
-          pip install tomte[tox]==0.6.1
+          pip install tomte[tox]==0.6.5
           pip install --user --upgrade setuptools
 
           # install Protobuf compiler
