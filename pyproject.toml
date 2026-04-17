@@ -53,11 +53,12 @@ dependencies = [
 Repository = "https://github.com/valory-xyz/hello-world"
 
 [dependency-groups]
-dev = ["tomte[tests, cli]==0.6.5"]
+dev = ["tomte[tests, cli]==0.6.5", "tox-uv"]
 
 [tool.uv]
 default-groups = "all"
 prerelease = "allow"
+constraint-dependencies = ["httpx<1"]
 
 [tool.uv.build-backend]
 module-name = ["packages"]
