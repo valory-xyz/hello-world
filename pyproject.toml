@@ -41,7 +41,6 @@ dependencies = [
     "pycryptodome==3.20.0",
     "pytest==8.4.2",
     "pytest-asyncio",
-    "python-dotenv>=0.14.0,<0.18.0",
     "pytz==2022.2.1",
     "setuptools<=81.0.0",
     "toml==0.10.2",
@@ -58,6 +57,9 @@ dev = ["tomte[tests, cli]==0.6.5", "tox-uv"]
 [tool.uv]
 default-groups = "all"
 prerelease = "allow"
+# Keep httpx on the 0.x series: safety 3.7.0 (pulled via tomte[safety])
+# imports httpx.NetworkError, which was removed in httpx 1.x. Without
+# this constraint, UV_PRERELEASE=allow lets uv resolve to httpx 1.0.devN.
 constraint-dependencies = ["httpx<1"]
 
 [tool.uv.build-backend]
