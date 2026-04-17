@@ -66,3 +66,29 @@ Example of an autonomous AI agent using the [Open Autonomy](https://stack.olas.n
       ```
 
 - Execute make command `make run-agent`.
+
+## Development
+
+### CI tooling
+
+CI checks use CLI commands from [tomte](https://github.com/valory-xyz/tomte) and [open-aea-ci-helpers](https://pypi.org/project/open-aea-ci-helpers/). These are installed automatically via tox env deps. Key commands:
+
+| Task | Command |
+|------|---------|
+| Copyright check | `tomte check-copyright --author "Valory AG" --author "Fetch.AI Limited"` |
+| Doc link check | `tomte check-doc-links` |
+| Dependency check | `aea-ci check-dependencies --check` |
+| API doc check | `aea-ci generate-api-docs --check` |
+| Doc hash check | `aea-ci check-doc-hashes` |
+| IPFS push check | `aea-ci check-ipfs-pushed` |
+| Package list | `aea-ci generate-pkg-list` |
+
+### Manual tools
+
+For dependency bumping and config replacement, install the [open-aea-helpers](https://pypi.org/project/open-aea-helpers/) plugin:
+
+```bash
+pip install open-aea-helpers
+aea-helpers bump-dependencies        # bump open-aea/autonomy pins to latest
+aea-helpers config-replace --mapping config-mapping.json  # YAML config substitution
+```
