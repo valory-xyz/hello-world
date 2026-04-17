@@ -75,7 +75,7 @@ CI checks use CLI commands from [tomte](https://github.com/valory-xyz/tomte) and
 
 | Task | Command |
 |------|---------|
-| Copyright check | `tomte check-copyright --author "Valory AG" --author "Fetch.AI Limited"` |
+| Copyright check | `tomte check-copyright --author "Valory AG" --author "Fetch.AI Limited"` (or `tox -e check-copyright`) |
 | Doc link check | `tomte check-doc-links` |
 | Dependency check | `aea-ci check-dependencies --check` |
 | API doc check | `aea-ci generate-api-docs --check` |

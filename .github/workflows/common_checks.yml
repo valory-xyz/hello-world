@@ -60,7 +60,7 @@ jobs:
         pip install tomte[tox,cli]==0.6.5 tox-uv
         pip install --user --upgrade setuptools
     - name: Check copyright headers
-      run: tomte format-copyright --author "Valory AG" --author "Fetch.AI Limited"
+      run: tomte check-copyright --author "Valory AG" --author "Fetch.AI Limited" --scan-path packages/valory/skills/hello_world_abci --scan-path packages/valory/agents/hello_world
     - name: License compatibility check
       run: tox -e liccheck
     - name: Check docs
