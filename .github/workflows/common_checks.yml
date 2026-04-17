@@ -27,23 +27,12 @@ jobs:
     - uses: actions/setup-python@v6
       with:
         python-version: ${{ matrix.python-version }}
-    - if: matrix.os != 'windows-2025'
-      name: Pipenv install requirements and check it can be locked
-      run: |
-        pip install pipenv==2023.7.23
-        pipenv --clear
-        time pipenv install --verbose --dev --skip-lock
-        time pipenv run pip install -e .[all]
-        time pipenv lock
-    - if: matrix.os == 'windows-2025'
-      name: Pipenv install requirements and check it can be locked
-      run: |
-        choco install ptime
-        pip install pipenv==2023.7.23
-        pipenv --clear
-        ptime pipenv install --verbose --dev --skip-lock
-        ptime pipenv run pip install -e .[all]
-        ptime pipenv lock
+    - name: Install uv
+      uses: astral-sh/setup-uv@v6
+    - name: Check if dependencies can be locked
+      run: uv lock --check
+    - name: Install dependencies
+      run: uv sync --all-groups -v
 
   copyright_doc_and_dependencies_check:
     continue-on-error: False
@@ -68,19 +57,18 @@ jobs:
         sudo apt-get update --fix-missing
         sudo apt-get autoremove
         sudo apt-get autoclean
-        pip install tomte[tox,cli]==0.6.5
+        pip install tomte[tox,cli]==0.6.5 tox-uv
         pip install --user --upgrade setuptools
     - name: Check copyright headers
-      run: tomte format-copyright --author "Valory AG" --author "Fetch.AI Limited"
+      run: tomte check-copyright --author "Valory AG" --author "Fetch.AI Limited" --scan-path packages/valory/skills/hello_world_abci --scan-path packages/valory/agents/hello_world
     - name: License compatibility check
       run: tox -e liccheck
-    # - name: Check docs
-    #   run: tox -e check-api-docs
-    # - name: Check doc links
-    #   run: tomte check-doc-links --http-skips http://host.docker.internal:8545 --http-skips http://www.fipa.org/repository/ips.php3 --url-skips "https://gateway.autonolas.tech/ipfs/<hash>," --url-skips "https://github.com/valory-xyz/open-autonomy/trunk/infrastructure" --url-skips "http://host.docker.internal:8545" --url-skips "https://github.com/valory-xyz/open-operator"
-    # TODO: Investigate and fix - Package open-aea-ledger-cosmos has version ==1.38.0 in Pipfile and  in packages.
-    # - name: Check dependencies
-    #   run: tox -e check-dependencies
+    - name: Check docs
+      run: tox -e check-api-docs
+    - name: Check doc links
+      run: tomte check-doc-links
+    - name: Check dependencies
+      run: tox -e check-dependencies
 
   linter_checks:
     continue-on-error: False
@@ -103,7 +91,7 @@ jobs:
         sudo apt-get update --fix-missing
         sudo apt-get autoremove
         sudo apt-get autoclean
-        pip install tomte[tox]==0.6.5
+        pip install tomte[tox]==0.6.5 tox-uv
         pip install --user --upgrade setuptools
         # install Protobuf compiler
         wget https://github.com/protocolbuffers/protobuf/releases/download/v3.19.4/protoc-3.19.4-linux-x86_64.zip
@@ -191,7 +179,7 @@ jobs:
           sudo apt-get update --fix-missing
           sudo apt-get autoremove
           sudo apt-get autoclean
-          pip install tomte[tox]==0.6.5
+          pip install tomte[tox]==0.6.5 tox-uv
           pip install --user --upgrade setuptools
 
           # install Protobuf compiler
@@ -227,7 +215,7 @@ jobs:
       - if: matrix.os == 'macos-15'
         name: Install dependencies (macos-15)
         run: |
-          pip install tomte[tox]==0.6.5
+          pip install tomte[tox]==0.6.5 tox-uv
           brew install gcc
 
           # protoc: use brew on arm64 (no osx-aarch_64 in 3.19.x), manual download on x86_64
@@ -280,7 +268,7 @@ jobs:
           choco install make -y
           # to check make was installed
           make --version
-          pip install tomte[tox]==0.6.5
+          pip install tomte[tox]==0.6.5 tox-uv
           # wget https://github.com/protocolbuffers/protobuf/releases/download/v24.3/protoc-24.3-win64.zip
           # unzip protoc-24.3-win64.zip -d protoc
           # sudo mv protoc/bin/protoc /usr/local/bin/protoc
@@ -345,7 +333,7 @@ jobs:
           sudo apt-get update --fix-missing
           sudo apt-get autoremove
           sudo apt-get autoclean
-          pip install tomte[tox]==0.6.5
+          pip install tomte[tox]==0.6.5 tox-uv
           pip install --user --upgrade setuptools
 
           # install Protobuf compiler

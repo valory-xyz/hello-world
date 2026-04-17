@@ -8,7 +8,7 @@ fingerprint:
   README.md: bafybeifn3iyurnlngvldbsixr4j7sr23lwofensamf4haa4bkvueb4pe4i
   __init__.py: bafybeiehvk4wlv2bcbplwc66owg4qdnisiihijq7iegcmjjxtz3dulnrgm
   tests/__init__.py: bafybeiasj5kqyvalbnedototb6ooxfnro3vjmgscja2iccccotfjnd6cha
-  tests/test_hello_world.py: bafybeidppcl4vtrdtdwevzbg2qdqrfnf6bqjo7r32lmzoy5vo7ptrkp6am
+  tests/test_hello_world.py: bafybeigao5ogjtbaaarrf23r6ck7hrhuwbifrfm2wfwxzm7ufzpmvlirfe
 fingerprint_ignore_patterns: []
 connections:
 - valory/abci:0.1.0:bafybeihgtguy5ljj2rwgwoxeor5d565alwfggnuevss7malhzdats6nfqi
@@ -25,7 +25,7 @@ protocols:
 skills:
 - valory/abstract_abci:0.1.0:bafybeif4jcv22xrmkwiaecyyli7iknmdhtkg6dmzqmwpqekmvxyr7ba3xy
 - valory/abstract_round_abci:0.1.0:bafybeihgbc5geup3ljdfgyontr2p5e4myxjkthaplm5ei727uw2pawstcy
-- valory/hello_world_abci:0.1.0:bafybeico5al3phuglktuimaiotvcdab7bknvbilt3xnlonnhp32ioawvxa
+- valory/hello_world_abci:0.1.0:bafybeihlwaujzwwnduhdsgdozllykt6or6wsik44fr2dtupioe2epnfkxq
 default_ledger: ethereum
 required_ledgers:
 - ethereum

@@ -4,9 +4,9 @@ Example of an autonomous AI agent using the [Open Autonomy](https://stack.olas.n
 
 ## System requirements
 
-- Python `>=3.10`
+- Python `>=3.10, <3.15`
 - [Tendermint](https://docs.tendermint.com/v0.34/introduction/install.html) `==0.34.19`
-- [Pipenv](https://pipenv.pypa.io/en/latest/installation/) `>=2021.x.xx`
+- [uv](https://docs.astral.sh/uv/) `>=0.11`
 - [Docker Engine](https://docs.docker.com/engine/install/)
 - [Docker Compose](https://docs.docker.com/compose/install/)
 - The [Open Autonomy](https://stack.olas.network/open-autonomy/guides/set_up/#set-up-the-framework) framework
@@ -19,7 +19,7 @@ Example of an autonomous AI agent using the [Open Autonomy](https://stack.olas.n
 
 - Create development environment:
 
-      make new_env && pipenv shell
+      uv sync --all-groups && source .venv/bin/activate
 
 - Configure the Open Autonomy CLI:
 
@@ -75,7 +75,7 @@ CI checks use CLI commands from [tomte](https://github.com/valory-xyz/tomte) and
 
 | Task | Command |
 |------|---------|
-| Copyright check | `tomte check-copyright --author "Valory AG" --author "Fetch.AI Limited"` |
+| Copyright check | `tomte check-copyright --author "Valory AG" --author "Fetch.AI Limited"` (or `tox -e check-copyright`) |
 | Doc link check | `tomte check-doc-links` |
 | Dependency check | `aea-ci check-dependencies --check` |
 | API doc check | `aea-ci generate-api-docs --check` |
@@ -85,10 +85,9 @@ CI checks use CLI commands from [tomte](https://github.com/valory-xyz/tomte) and
 
 ### Manual tools
 
-For dependency bumping and config replacement, install the [open-aea-helpers](https://pypi.org/project/open-aea-helpers/) plugin:
+The [open-aea-helpers](https://pypi.org/project/open-aea-helpers/) plugin is installed as a regular dependency (via `uv sync --all-groups`), providing:
 
 ```bash
-pip install open-aea-helpers
 aea-helpers bump-dependencies        # bump open-aea/autonomy pins to latest
 aea-helpers config-replace --mapping config-mapping.json  # YAML config substitution
 ```
