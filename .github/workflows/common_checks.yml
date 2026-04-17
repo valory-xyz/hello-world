@@ -376,3 +376,24 @@ jobs:
       - name: Unit tests
         run: |
           tox --develop -e e2e-py${{ matrix.python-version }}-linux -- -m 'e2e'
+
+  all-checks-passed:
+    name: All checks passed
+    if: always()
+    needs:
+      - lock_check
+      - copyright_doc_and_dependencies_check
+      - linter_checks
+      - scan
+      - test
+      - e2e
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Verify all required jobs succeeded
+        run: |
+          if [[ "${{ contains(needs.*.result, 'failure') || contains(needs.*.result, 'cancelled') }}" == "true" ]]; then
+            echo "One or more required jobs failed or were cancelled"
+            printf 'Job results:\n%s\n' '${{ toJSON(needs) }}'
+            exit 1
+          fi
+          echo "All required jobs passed"
