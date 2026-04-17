@@ -1490,9 +1490,7 @@ dependencies = [
     { name = "ipfshttpclient" },
     { name = "multidict" },
     { name = "open-aea", extra = ["all"] },
-    { name = "open-aea-ci-helpers" },
     { name = "open-aea-cli-ipfs" },
-    { name = "open-aea-helpers" },
     { name = "open-aea-ledger-cosmos" },
     { name = "open-aea-ledger-ethereum" },
     { name = "open-aea-ledger-ethereum-hwi" },
@@ -1507,7 +1505,6 @@ dependencies = [
     { name = "pytest-asyncio" },
     { name = "pytz" },
     { name = "requests" },
-    { name = "setuptools" },
     { name = "toml" },
     { name = "typing-extensions" },
     { name = "web3" },
@@ -1515,6 +1512,9 @@ dependencies = [
 
 [package.dev-dependencies]
 dev = [
+    { name = "open-aea-ci-helpers" },
+    { name = "open-aea-helpers" },
+    { name = "setuptools" },
     { name = "tomte", extra = ["cli", "tests"] },
     { name = "tox-uv" },
 ]
@@ -1536,9 +1536,7 @@ requires-dist = [
     { name = "ipfshttpclient", specifier = "==0.8.0a2" },
     { name = "multidict" },
     { name = "open-aea", extras = ["all"], specifier = "==2.2.1" },
-    { name = "open-aea-ci-helpers", specifier = "==2.2.1" },
     { name = "open-aea-cli-ipfs", specifier = "==2.2.1" },
-    { name = "open-aea-helpers", specifier = "==0.21.18" },
     { name = "open-aea-ledger-cosmos", specifier = "==2.2.1" },
     { name = "open-aea-ledger-ethereum", specifier = "==2.2.1" },
     { name = "open-aea-ledger-ethereum-hwi", specifier = "==2.2.1" },
@@ -1553,7 +1551,6 @@ requires-dist = [
     { name = "pytest-asyncio" },
     { name = "pytz", specifier = "==2022.2.1" },
     { name = "requests", specifier = ">=2.28.1,<2.33.0" },
-    { name = "setuptools", specifier = "<=81.0.0" },
     { name = "toml", specifier = "==0.10.2" },
     { name = "typing-extensions", specifier = ">=3.10.0.2" },
     { name = "web3", specifier = ">=7.0.0,<8" },
@@ -1561,6 +1558,9 @@ requires-dist = [
 
 [package.metadata.requires-dev]
 dev = [
+    { name = "open-aea-ci-helpers", specifier = "==2.2.1" },
+    { name = "open-aea-helpers", specifier = "==0.21.18" },
+    { name = "setuptools", specifier = "<=81.0.0" },
     { name = "tomte", extras = ["tests", "cli"], specifier = "==0.6.5" },
     { name = "tox-uv" },
 ]
