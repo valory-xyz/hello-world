@@ -4,9 +4,9 @@ Example of an autonomous AI agent using the [Open Autonomy](https://stack.olas.n
 
 ## System requirements
 
-- Python `>=3.10`
+- Python `>=3.10, <3.15`
 - [Tendermint](https://docs.tendermint.com/v0.34/introduction/install.html) `==0.34.19`
-- [Pipenv](https://pipenv.pypa.io/en/latest/installation/) `>=2021.x.xx`
+- [uv](https://docs.astral.sh/uv/) `>=0.11`
 - [Docker Engine](https://docs.docker.com/engine/install/)
 - [Docker Compose](https://docs.docker.com/compose/install/)
 - The [Open Autonomy](https://stack.olas.network/open-autonomy/guides/set_up/#set-up-the-framework) framework
@@ -19,7 +19,7 @@ Example of an autonomous AI agent using the [Open Autonomy](https://stack.olas.n
 
 - Create development environment:
 
-      make new_env && pipenv shell
+      uv sync --all-groups && source .venv/bin/activate
 
 - Configure the Open Autonomy CLI:
 
