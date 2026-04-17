@@ -155,7 +155,7 @@ For each state of the AI agent FSM:
 Additionally, the following two classes:
 
 * [`AbciApp`](https://stack.olas.network/open-autonomy/key_concepts/abci_app_class/): The class that defines the FSM itself and the transitions between states according to the FSM.
-* [`RoundBehaviour`](https://stack.olas.network/open-autonomy/key_concepts/abci_app_abstract_round/_behaviour): The main class of the {{fsm_app}} skill, which aggregates the `AbciApp` and establishes a one-to-one relationship between the rounds and behaviours of each state.
+* [`RoundBehaviour`](https://stack.olas.network/open-autonomy/key_concepts/abci_app_abstract_round_behaviour/): The main class of the {{fsm_app}} skill, which aggregates the `AbciApp` and establishes a one-to-one relationship between the rounds and behaviours of each state.
 
 In summary, the Hello World AI agent {{fsm_app}} requires 5 `Behaviours`, 5 `Payloads`, 5 `Rounds`, 1 `AbciApp` and 1 `RoundBehaviour`.
 

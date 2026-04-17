@@ -85,10 +85,9 @@ CI checks use CLI commands from [tomte](https://github.com/valory-xyz/tomte) and
 
 ### Manual tools
 
-For dependency bumping and config replacement, install the [open-aea-helpers](https://pypi.org/project/open-aea-helpers/) plugin:
+The [open-aea-helpers](https://pypi.org/project/open-aea-helpers/) plugin is installed as a regular dependency (via `uv sync --all-groups`), providing:
 
 ```bash
-pip install open-aea-helpers
 aea-helpers bump-dependencies        # bump open-aea/autonomy pins to latest
 aea-helpers config-replace --mapping config-mapping.json  # YAML config substitution
 ```
